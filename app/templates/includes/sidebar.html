@@ -18,33 +18,35 @@
             </a>
         </li>
 
-        <li class="nav-item mb-2">
-            <a href="#" class="nav-link text-white">
+        
+        <li class="nav-item mt-2">
+            <a href="{{ url_for('community.communities') }}" class="nav-link text-white">
                 <i class="bi bi-people-fill"></i> Communities
             </a>
         </li>
-
-        <li class="nav-item mb-2">
-            <a href="#" class="nav-link text-white">
+        
+        <li class="nav-item mt-2">
+            <a href="{{ url_for('note.notes') }}" class="nav-link text-white">
                 <i class="bi bi-journal-bookmark-fill"></i> Notes
             </a>
         </li>
-
-        <li class="nav-item mb-2">
-            <a href="#" class="nav-link text-white">
+        
+        <li class="nav-item mt-2">
+            <a href="{{ url_for('placement.placements') }}" class="nav-link text-white">
                 <i class="bi bi-briefcase-fill"></i> Placements
             </a>
         </li>
-
+        
+        <li class="nav-item mt-2">
+            <a href="{{ url_for('profile.my_profile') }}" class="nav-link text-white">
+                <i class="bi bi-person-circle"></i>
+                Profile
+            </a>
+        </li>
+        
         <li class="nav-item mt-4">
             <a href="{{ url_for('auth.logout') }}" class="nav-link text-danger">
                 <i class="bi bi-box-arrow-right"></i> Logout
-            </a>
-        </li>
-
-        <li class="nav-item mt-4">
-            <a href="{{ url_for('community.communities') }}" class="nav-link text-white">
-                <i class="bi bi-people-fill"></i> Communities
             </a>
         </li>
 

@@ -24,4 +24,14 @@ class User(UserMixin, db.Model):
 
     profile_pic = db.Column(db.String(255), default="default.png")
 
+    phone = db.Column(db.String(20))
+
+    bio = db.Column(db.Text)
+
+    skills = db.Column(db.Text)
+
+    github = db.Column(db.String(255))
+
+    linkedin = db.Column(db.String(255))
+
     created_at = db.Column(db.DateTime, server_default=db.func.now())

@@ -39,5 +39,14 @@ def create_app():
 
     from app.routes.community import community
     app.register_blueprint(community)
-    
+
+    from app.routes.note import note
+    app.register_blueprint(note)
+
+    from app.routes.profile import profile
+    app.register_blueprint(profile)
+
+    from app.routes.placement import placement
+    app.register_blueprint(placement)
+
     return app

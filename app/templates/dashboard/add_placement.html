@@ -1,0 +1,52 @@
+{% extends "dashboard/dashboard_base.html" %}
+
+{% block title %}Add Placement{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">Add Placement</h2>
+
+<form method="POST">
+
+    <div class="mb-3">
+        <label>Company</label>
+        <input type="text" name="company" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Role</label>
+        <input type="text" name="role" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Package</label>
+        <input type="text" name="package" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Location</label>
+        <input type="text" name="location" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Eligibility</label>
+        <input type="text" name="eligibility" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Deadline</label>
+        <input type="date" name="deadline" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Apply Link</label>
+        <input type="url" name="apply_link" class="form-control" required>
+    </div>
+
+    <button class="btn btn-primary">
+        Add Placement
+    </button>
+
+</form>
+
+{% endblock %}

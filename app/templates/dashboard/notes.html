@@ -1,0 +1,41 @@
+{% extends "dashboard/dashboard_base.html" %}
+
+{% block content %}
+
+<h2>Study Notes</h2>
+
+<a href="{{ url_for('note.upload_note') }}" class="btn btn-primary">
+    Upload Notes
+</a>
+
+<hr>
+
+{% for note in notes %}
+
+<div class="card p-3 mb-3">
+
+    <h3>{{ note.title }}</h3>
+
+    <p><strong>Subject:</strong> {{ note.subject }}</p>
+
+    <p><strong>Department:</strong> {{ note.department }}</p>
+
+    <p><strong>Year:</strong> {{ note.year }}</p>
+
+    <a href="{{ url_for('static', filename='uploads/notes/' + note.file_name) }}"
+       target="_blank"
+       class="btn btn-success">
+
+       Download PDF
+
+    </a>
+
+</div>
+
+{% else %}
+
+<p>No notes uploaded yet.</p>
+
+{% endfor %}
+
+{% endblock %}

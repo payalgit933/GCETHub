@@ -1,0 +1,55 @@
+{% extends "dashboard/dashboard_base.html" %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+
+<div class="card shadow p-4">
+
+    <div class="text-center">
+
+        <img src="{{ url_for('static', filename='uploads/profile_pics/' + user.profile_pic) }}"
+             width="140"
+             height="140"
+             class="rounded-circle mb-3">
+
+        <h3>{{ user.name }}</h3>
+
+        <span class="badge bg-primary">{{ user.role.title() }}</span>
+
+    </div>
+
+    <hr>
+
+    <table class="table">
+
+        <tr>
+            <th>Email</th>
+            <td>{{ user.email }}</td>
+        </tr>
+
+        <tr>
+            <th>Enrollment</th>
+            <td>{{ user.enrollment }}</td>
+        </tr>
+
+        <tr>
+            <th>Department</th>
+            <td>{{ user.department }}</td>
+        </tr>
+
+        <tr>
+            <th>Year</th>
+            <td>{{ user.year }}</td>
+        </tr>
+
+        <tr>
+            <th>Section</th>
+            <td>{{ user.section }}</td>
+        </tr>
+
+    </table>
+
+</div>
+
+{% endblock %}
