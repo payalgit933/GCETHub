@@ -76,7 +76,7 @@ Profile includes:
 
 Modern campus-focused landing page introducing GCETHub's vision.
 
-![Landing Page](static/images/landing.png)
+![Landing Page](static/images/banner.png)
 
 ## Dashboard
 
