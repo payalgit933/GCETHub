@@ -1,6 +1,6 @@
 # 🎓 GCETHub - Campus Collaboration & Student Platform
 
-![GCETHub Banner](static/banner.png)
+![GCETHub Banner](app/static/images/banner.png)
 
 ## 🚀 Overview
 
