@@ -1,13 +1,640 @@
 {% extends "base.html" %}
 
-{% block title %}
-GCETHub
-{% endblock %}
+{% block title %}GCETHub{% endblock %}
 
 {% block content %}
 
-<h1 class="text-center mt-5">
-    Welcome to GCETHub 🚀
+<nav class="navbar navbar-expand-lg bg-white shadow-sm">
+    <div class="container">
+
+        <a class="navbar-brand fw-bold text-primary" href="#">
+            🎓 GCETHub
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbar">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbar">
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+
+            </ul>
+
+            <div class="ms-3">
+
+                <a href="{{ url_for('auth.login') }}" class="btn btn-outline-primary me-2">
+                    Login
+                </a>
+
+                <a href="{{ url_for('auth.register') }}" class="btn btn-primary">
+                    Register
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+</nav>
+
+<section class="container mt-5">
+
+<div class="row align-items-center">
+
+<div class="col-lg-6">
+
+<h1 class="display-4 fw-bold">
+
+One Platform.
+
+Every Campus Update.
+
 </h1>
+
+<p class="lead mt-4">
+
+No more searching through dozens of WhatsApp groups.
+
+GCETHub keeps announcements, communities,
+
+notes and placements in one place.
+
+</p>
+
+<a href="#" class="btn btn-primary btn-lg mt-3">
+
+Get Started
+
+</a>
+
+<a href="#" class="btn btn-outline-dark btn-lg mt-3">
+
+Learn More
+
+</a>
+
+</div>
+
+<div class="col-lg-6 text-center">
+
+<img src="{{ url_for('static', filename='images/hero-img.png') }}"
+     class="img-fluid hero-img">
+
+</div>
+
+</div>
+
+</section>
+
+<section class="py-5 bg-light">
+
+<div class="container">
+
+<h2 class="text-center fw-bold mb-5">
+Why Choose GCETHub?
+</h2>
+
+<div class="row g-4">
+
+<div class="col-md-4">
+
+<div class="feature-card h-100">
+
+<div class="icon-box">
+<i class="bi bi-megaphone-fill"></i>
+</div>
+
+<h4>Official Announcements</h4>
+
+<p>
+Never miss important notices, exam schedules,
+holiday updates or circulars.
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="feature-card h-100">
+
+<div class="icon-box">
+<i class="bi bi-people-fill"></i>
+</div>
+
+<h4>Communities</h4>
+
+<p>
+Join section-wise, subject-wise and club communities
+without searching through multiple WhatsApp groups.
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="feature-card h-100">
+
+<div class="icon-box">
+<i class="bi bi-journal-bookmark-fill"></i>
+</div>
+
+<h4>Notes Sharing</h4>
+
+<p>
+Upload and download notes, assignments and previous
+year papers from your classmates.
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="feature-card h-100">
+
+<div class="icon-box">
+<i class="bi bi-briefcase-fill"></i>
+</div>
+
+<h4>Placements</h4>
+
+<p>
+Stay updated with internships, placement drives
+and company announcements.
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="feature-card h-100">
+
+<div class="icon-box">
+<i class="bi bi-calendar-event-fill"></i>
+</div>
+
+<h4>Campus Events</h4>
+
+<p>
+Discover workshops, hackathons,
+seminars and college events.
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="feature-card h-100">
+
+<div class="icon-box">
+<i class="bi bi-shield-check"></i>
+</div>
+
+<h4>Secure Login</h4>
+
+<p>
+Your account is protected with authentication
+and secure access.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="py-5">
+
+    <div class="container">
+
+        <h2 class="text-center fw-bold mb-5">
+            How It Works
+        </h2>
+
+        <div class="row text-center g-4">
+
+            <div class="col-md-3">
+
+                <div class="step-box">
+
+                    <div class="step-icon">
+                        <i class="bi bi-person-plus-fill"></i>
+                    </div>
+
+                    <h5>Create Account</h5>
+
+                    <p>
+                        Register using your college email and basic details.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="step-box">
+
+                    <div class="step-icon">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+
+                    <h5>Join Communities</h5>
+
+                    <p>
+                        Connect with your class, clubs and subject groups.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="step-box">
+
+                    <div class="step-icon">
+                        <i class="bi bi-bell-fill"></i>
+                    </div>
+
+                    <h5>Stay Updated</h5>
+
+                    <p>
+                        Receive announcements, notes and placement updates.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="step-box">
+
+                    <div class="step-icon">
+                        <i class="bi bi-graph-up-arrow"></i>
+                    </div>
+
+                    <h5>Grow Together</h5>
+
+                    <p>
+                        Learn, collaborate and prepare for your career.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="py-5 bg-light">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-6">
+
+                <img src="{{ url_for('static', filename='images/student-benefits.png') }}"
+                     class="img-fluid rounded shadow"
+                     alt="Student Benefits">
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <h2 class="fw-bold mb-4">
+                    Why Students Love GCETHub
+                </h2>
+
+                <div class="benefit-item">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    <div>
+
+                        <h5>Everything in One Place</h5>
+
+                        <p>
+                            Announcements, notes, placements, communities
+                            and events—all organised in one platform.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="benefit-item">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    <div>
+
+                        <h5>No WhatsApp Clutter</h5>
+
+                        <p>
+                            Stop searching through multiple groups to
+                            find one important message.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="benefit-item">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    <div>
+
+                        <h5>Fast Collaboration</h5>
+
+                        <p>
+                            Easily connect with classmates, seniors,
+                            clubs and faculty members.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="benefit-item">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    <div>
+
+                        <h5>Career Growth</h5>
+
+                        <p>
+                            Get internship opportunities,
+                            placement drives and career resources.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="stats-section py-5">
+
+    <div class="container">
+
+        <div class="row text-center">
+
+            <div class="col-md-3 col-6 mb-4">
+
+                <h2 class="counter">20+</h2>
+
+                <p>Communities</p>
+
+            </div>
+
+            <div class="col-md-3 col-6 mb-4">
+
+                <h2 class="counter">500+</h2>
+
+                <p>Students Connected</p>
+
+            </div>
+
+            <div class="col-md-3 col-6 mb-4">
+
+                <h2 class="counter">1500+</h2>
+
+                <p>Notes Shared</p>
+
+            </div>
+
+            <div class="col-md-3 col-6 mb-4">
+
+                <h2 class="counter">100+</h2>
+
+                <p>Placement Updates</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="py-5">
+
+<div class="container">
+
+<h2 class="text-center fw-bold mb-5">
+Frequently Asked Questions
+</h2>
+
+<div class="accordion" id="faqAccordion">
+
+<div class="accordion-item">
+
+<h2 class="accordion-header">
+
+<button class="accordion-button"
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#faq1">
+
+Who can use GCETHub?
+
+</button>
+
+</h2>
+
+<div id="faq1"
+class="accordion-collapse collapse show"
+data-bs-parent="#faqAccordion">
+
+<div class="accordion-body">
+
+GCETHub is designed for students,
+faculty members and campus clubs.
+
+</div>
+
+</div>
+
+</div>
+
+<div class="accordion-item">
+
+<h2 class="accordion-header">
+
+<button class="accordion-button collapsed"
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#faq2">
+
+Is GCETHub free?
+
+</button>
+
+</h2>
+
+<div id="faq2"
+class="accordion-collapse collapse"
+data-bs-parent="#faqAccordion">
+
+<div class="accordion-body">
+
+Yes.
+Students can use all basic features for free.
+
+</div>
+
+</div>
+
+</div>
+
+<div class="accordion-item">
+
+<h2 class="accordion-header">
+
+<button class="accordion-button collapsed"
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#faq3">
+
+Can students upload notes?
+
+</button>
+
+</h2>
+
+<div id="faq3"
+class="accordion-collapse collapse"
+data-bs-parent="#faqAccordion">
+
+<div class="accordion-body">
+
+Yes.
+Students can upload notes,
+assignments and previous-year papers.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<footer class="footer">
+
+<div class="container">
+
+<div class="row">
+
+<div class="col-md-6">
+
+<h4>GCETHub</h4>
+
+<p>
+Connecting students,
+communities and opportunities.
+</p>
+
+</div>
+
+<div class="col-md-3">
+
+<h5>Quick Links</h5>
+
+<ul>
+
+<li><a href="#">Home</a></li>
+
+<li><a href="#">Features</a></li>
+
+<li><a href="{{ url_for('auth.register') }}">Register</a></li>
+
+<li><a href="{{ url_for('auth.login') }}">Login</a></li>
+
+</ul>
+
+</div>
+
+<div class="col-md-3">
+
+<h5>Contact</h5>
+
+<p>
+
+Greater Noida
+
+</p>
+
+<p>
+
+support@gcethub.com
+
+</p>
+
+</div>
+
+</div>
+
+<hr>
+
+<p class="text-center">
+
+© 2026 GCETHub. All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
 
 {% endblock %}

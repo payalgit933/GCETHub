@@ -1,0 +1,53 @@
+<div class="col-md-2 bg-dark text-white min-vh-100 p-3">
+
+    <h4 class="text-center mb-4">
+        🎓 GCETHub
+    </h4>
+
+    <ul class="nav flex-column">
+
+        <li class="nav-item mb-2">
+            <a href="{{ url_for('dashboard.home') }}" class="nav-link text-white">
+                <i class="bi bi-house-door-fill"></i> Dashboard
+            </a>
+        </li>
+
+        <li class="nav-item mb-2">
+            <a href="{{ url_for('announcement.announcements') }}" class="nav-link text-white">
+                <i class="bi bi-megaphone-fill"></i> Announcements
+            </a>
+        </li>
+
+        <li class="nav-item mb-2">
+            <a href="#" class="nav-link text-white">
+                <i class="bi bi-people-fill"></i> Communities
+            </a>
+        </li>
+
+        <li class="nav-item mb-2">
+            <a href="#" class="nav-link text-white">
+                <i class="bi bi-journal-bookmark-fill"></i> Notes
+            </a>
+        </li>
+
+        <li class="nav-item mb-2">
+            <a href="#" class="nav-link text-white">
+                <i class="bi bi-briefcase-fill"></i> Placements
+            </a>
+        </li>
+
+        <li class="nav-item mt-4">
+            <a href="{{ url_for('auth.logout') }}" class="nav-link text-danger">
+                <i class="bi bi-box-arrow-right"></i> Logout
+            </a>
+        </li>
+
+        <li class="nav-item mt-4">
+            <a href="{{ url_for('community.communities') }}" class="nav-link text-white">
+                <i class="bi bi-people-fill"></i> Communities
+            </a>
+        </li>
+
+    </ul>
+
+</div>

@@ -1,4 +1,260 @@
 body{
-    font-family: 'Poppins', sans-serif;
+    font-family:'Poppins',sans-serif;
     background:#f8fafc;
+}
+
+.navbar{
+    padding:15px;
+}
+
+.display-4{
+    color:#1E3A8A;
+}
+
+.hero-image{
+    border-radius:20px;
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.hero{
+    padding:90px 0;
+}
+
+.card{
+    border:none;
+    transition:0.3s;
+    border-radius:15px;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.btn-primary{
+    background:#1E3A8A;
+    border:none;
+}
+
+.btn-primary:hover{
+    background:#163172;
+}
+
+.feature-card{
+
+background:white;
+
+padding:35px;
+
+border-radius:20px;
+
+text-align:center;
+
+transition:.35s;
+
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+height:100%;
+
+}
+
+.feature-card:hover{
+
+transform:translateY(-10px);
+
+box-shadow:0 20px 40px rgba(0,0,0,.15);
+
+}
+
+.icon-box{
+
+width:80px;
+
+height:80px;
+
+background:#eef3ff;
+
+margin:auto;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+margin-bottom:20px;
+
+}
+
+.icon-box i{
+
+font-size:32px;
+
+color:#1E3A8A;
+
+}
+
+.feature-card h4{
+
+font-weight:700;
+
+margin-bottom:15px;
+
+}
+
+.feature-card p{
+
+color:#666;
+
+}
+
+.step-box{
+
+    padding:30px;
+
+    transition:.3s;
+
+}
+
+.step-box:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.step-icon{
+
+    width:90px;
+
+    height:90px;
+
+    background:#1E3A8A;
+
+    color:white;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin:auto;
+
+    margin-bottom:20px;
+
+}
+
+.step-icon i{
+
+    font-size:35px;
+
+}
+
+.step-box h5{
+
+    font-weight:700;
+
+    margin-bottom:15px;
+
+}
+
+.step-box p{
+
+    color:#666;
+
+}
+
+.benefit-item{
+
+display:flex;
+
+align-items:flex-start;
+
+margin-bottom:25px;
+
+}
+
+.benefit-item i{
+
+font-size:28px;
+
+color:#1E3A8A;
+
+margin-right:18px;
+
+margin-top:4px;
+
+}
+
+.benefit-item h5{
+
+font-weight:700;
+
+}
+
+.benefit-item p{
+
+color:#666;
+
+margin-bottom:0;
+
+}
+
+.stats-section{
+
+    background:#1E3A8A;
+
+    color:white;
+
+}
+
+.counter{
+
+    font-size:48px;
+
+    font-weight:700;
+
+}
+
+.stats-section p{
+
+    font-size:18px;
+
+    margin-top:10px;
+
+}
+
+.footer{
+
+background:#111827;
+
+color:white;
+
+padding:60px 0;
+
+}
+
+.footer ul{
+
+list-style:none;
+
+padding:0;
+
+}
+
+.footer a{
+
+color:white;
+
+text-decoration:none;
+
+}
+
+.footer a:hover{
+
+color:#60A5FA;
+
 }

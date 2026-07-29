@@ -1,6 +1,7 @@
 from app.extensions import db
+from flask_login import UserMixin
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -9,9 +10,18 @@ class User(db.Model):
 
     email = db.Column(db.String(120), unique=True, nullable=False)
 
+    enrollment = db.Column(db.String(30), unique=True, nullable=False)
+
     password = db.Column(db.String(255), nullable=False)
+
+    department = db.Column(db.String(50))
+
+    year = db.Column(db.String(20))
+
+    section = db.Column(db.String(10))
 
     role = db.Column(db.String(20), default="student")
 
-    def __repr__(self):
-        return f"<User {self.name}>"
+    profile_pic = db.Column(db.String(255), default="default.png")
+
+    created_at = db.Column(db.DateTime, server_default=db.func.now())

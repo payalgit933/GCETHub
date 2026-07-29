@@ -1,0 +1,24 @@
+<nav class="navbar navbar-light bg-white shadow-sm">
+
+    <div class="container-fluid">
+
+        <span class="navbar-brand fw-bold">
+
+            Welcome,
+            {{ current_user.name }}
+
+        </span>
+
+        <div>
+
+            <i class="bi bi-bell fs-4 me-4"></i>
+
+            <img src="{{ url_for('static', filename='images/default.png') }}"
+                 width="40"
+                 class="rounded-circle">
+
+        </div>
+
+    </div>
+
+</nav>
