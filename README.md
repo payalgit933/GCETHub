@@ -76,19 +76,19 @@ Profile includes:
 
 Modern campus-focused landing page introducing GCETHub's vision.
 
-![Landing Page](static/images/banner.png)
+![Landing Page](app/static/images/banner.png)
 
 ## Dashboard
 
 Student dashboard providing quick access to campus features.
 
-![Dashboard](static/images/dashboard.png)
+![Dashboard](app/static/images/dashboard.png)
 
 ## Profile Module
 
 Student profile management interface.
 
-![Profile](static/images/profile.png)
+![Profile](app/static/images/profile.png)
 
 ---
 
