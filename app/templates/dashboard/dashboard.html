@@ -1,76 +1,99 @@
 {% extends "dashboard/dashboard_base.html" %}
 
+{% block title %}Dashboard{% endblock %}
+
 {% block content %}
 
-<h2 class="mb-4">
-    👋 Welcome back, {{ current_user.name }}
-</h2>
+<div class="welcome-banner">
+    <h2>Welcome back, {{ current_user.name }}</h2>
+    <p>Here's an overview of what's happening across GCETHub today.</p>
+</div>
 
-<div class="row">
+<div class="row g-3 mb-4">
 
-<div class="col-md-3">
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card">
+            <div class="stat-icon blue">
+                <i class="bi bi-megaphone-fill"></i>
+            </div>
+            <div class="stat-value">{{ stats.announcements }}</div>
+            <p class="stat-label">Announcements</p>
+        </div>
+    </div>
 
-<div class="card shadow-sm">
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card">
+            <div class="stat-icon green">
+                <i class="bi bi-people-fill"></i>
+            </div>
+            <div class="stat-value">{{ stats.communities }}</div>
+            <p class="stat-label">Communities</p>
+        </div>
+    </div>
 
-<div class="card-body text-center">
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card">
+            <div class="stat-icon purple">
+                <i class="bi bi-journal-bookmark-fill"></i>
+            </div>
+            <div class="stat-value">{{ stats.notes }}</div>
+            <p class="stat-label">Study Notes</p>
+        </div>
+    </div>
 
-<h3>15</h3>
-
-<p>Announcements</p>
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card">
+            <div class="stat-icon orange">
+                <i class="bi bi-briefcase-fill"></i>
+            </div>
+            <div class="stat-value">{{ stats.placements }}</div>
+            <p class="stat-label">Placements</p>
+        </div>
+    </div>
 
 </div>
 
-</div>
+<div class="row g-3">
 
-</div>
+    <div class="col-md-6 col-lg-3">
+        <a href="{{ url_for('announcement.announcements') }}" class="quick-link-card">
+            <div class="ql-icon"><i class="bi bi-megaphone"></i></div>
+            <div>
+                <div class="ql-text">Announcements</div>
+                <div class="ql-desc">View latest updates</div>
+            </div>
+        </a>
+    </div>
 
-<div class="col-md-3">
+    <div class="col-md-6 col-lg-3">
+        <a href="{{ url_for('community.communities') }}" class="quick-link-card">
+            <div class="ql-icon"><i class="bi bi-people"></i></div>
+            <div>
+                <div class="ql-text">Communities</div>
+                <div class="ql-desc">Join student groups</div>
+            </div>
+        </a>
+    </div>
 
-<div class="card shadow-sm">
+    <div class="col-md-6 col-lg-3">
+        <a href="{{ url_for('note.notes') }}" class="quick-link-card">
+            <div class="ql-icon"><i class="bi bi-journal-text"></i></div>
+            <div>
+                <div class="ql-text">Study Notes</div>
+                <div class="ql-desc">Browse &amp; upload notes</div>
+            </div>
+        </a>
+    </div>
 
-<div class="card-body text-center">
-
-<h3>8</h3>
-
-<p>Communities</p>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="col-md-3">
-
-<div class="card shadow-sm">
-
-<div class="card-body text-center">
-
-<h3>42</h3>
-
-<p>Notes</p>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="col-md-3">
-
-<div class="card shadow-sm">
-
-<div class="card-body text-center">
-
-<h3>6</h3>
-
-<p>Placements</p>
-
-</div>
-
-</div>
-
-</div>
+    <div class="col-md-6 col-lg-3">
+        <a href="{{ url_for('placement.placements') }}" class="quick-link-card">
+            <div class="ql-icon"><i class="bi bi-briefcase"></i></div>
+            <div>
+                <div class="ql-text">Placements</div>
+                <div class="ql-desc">Explore opportunities</div>
+            </div>
+        </a>
+    </div>
 
 </div>
 

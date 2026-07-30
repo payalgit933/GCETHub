@@ -1,36 +1,42 @@
 {% extends "dashboard/dashboard_base.html" %}
 
+{% block title %}Add Community{% endblock %}
+
 {% block content %}
 
-<h2>Add Community</h2>
+{% set title = "Add Community" %}
+{% set subtitle = "Create a new student community" %}
+{% set breadcrumbs = [{"label": "Communities", "url": url_for('community.communities')}, {"label": "Add Community"}] %}
+{% include "includes/page_header.html" %}
 
-<form method="POST">
+<div class="form-card">
+    <form method="POST">
 
-    <input type="text"
-           name="name"
-           placeholder="Community Name"
-           required>
+        <div class="mb-3">
+            <label class="form-label">Community Name</label>
+            <input type="text" name="name" class="form-control" placeholder="e.g. Coding Club" required>
+        </div>
 
-    <br><br>
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea name="description" rows="4" class="form-control" placeholder="Describe the community purpose..." required></textarea>
+        </div>
 
-    <textarea
-        name="description"
-        placeholder="Description"
-        required></textarea>
+        <div class="mb-3">
+            <label class="form-label">Category</label>
+            <input type="text" name="category" class="form-control" placeholder="e.g. Technical, Cultural, Sports" required>
+        </div>
 
-    <br><br>
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-plus-lg me-1"></i> Create Community
+            </button>
+            <a href="{{ url_for('community.communities') }}" class="btn btn-outline-secondary">
+                Cancel
+            </a>
+        </div>
 
-    <input type="text"
-           name="category"
-           placeholder="Category"
-           required>
-
-    <br><br>
-
-    <button type="submit">
-        Create Community
-    </button>
-
-</form>
+    </form>
+</div>
 
 {% endblock %}

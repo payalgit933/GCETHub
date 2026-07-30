@@ -1,36 +1,46 @@
 {% extends "dashboard/dashboard_base.html" %}
 
+{% block title %}Communities{% endblock %}
+
 {% block content %}
 
-<h2>Add Community</h2>
+{% set title = "Communities" %}
+{% set subtitle = "Discover and join student communities" %}
+{% if current_user.role == "admin" %}
+{% set action_url = url_for('community.add_community') %}
+{% set action_text = "Add Community" %}
+{% set action_icon = "bi-plus-lg" %}
+{% endif %}
+{% include "includes/page_header.html" %}
 
-<form method="POST">
+{% for community in communities %}
 
-    <input type="text"
-           name="name"
-           placeholder="Community Name"
-           required>
+<div class="list-item-card">
+    <div class="d-flex justify-content-between align-items-start gap-3">
+        <div>
+            <h5 class="item-title">{{ community.name }}</h5>
+            <p class="mb-2 text-secondary">{{ community.description }}</p>
+            <span class="item-meta">
+                <i class="bi bi-tag me-1"></i>{{ community.category }}
+            </span>
+        </div>
+        <span class="item-badge">{{ community.category }}</span>
+    </div>
+</div>
 
-    <br><br>
+{% else %}
 
-    <textarea
-        name="description"
-        placeholder="Description"
-        required></textarea>
+<div class="empty-state">
+    <i class="bi bi-people d-block"></i>
+    <h5>No communities yet</h5>
+    <p>Communities will appear here once they are created.</p>
+    {% if current_user.role == "admin" %}
+    <a href="{{ url_for('community.add_community') }}" class="btn btn-primary">
+        <i class="bi bi-plus-lg me-1"></i> Create Community
+    </a>
+    {% endif %}
+</div>
 
-    <br><br>
-
-    <input type="text"
-           name="category"
-           placeholder="Category"
-           required>
-
-    <br><br>
-
-    <button type="submit">
-        Create Community
-    </button>
-
-</form>
+{% endfor %}
 
 {% endblock %}

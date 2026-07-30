@@ -1,0 +1,85 @@
+{% extends "dashboard/dashboard_base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+
+{% set title = "Admin Dashboard" %}
+{% set subtitle = "Platform overview and key metrics" %}
+{% include "includes/page_header.html" %}
+
+<div class="row g-3">
+
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card">
+            <div class="stat-icon blue">
+                <i class="bi bi-people-fill"></i>
+            </div>
+            <div class="stat-value">{{ data.users }}</div>
+            <p class="stat-label">Total Users</p>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card">
+            <div class="stat-icon green">
+                <i class="bi bi-mortarboard-fill"></i>
+            </div>
+            <div class="stat-value">{{ data.students }}</div>
+            <p class="stat-label">Students</p>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card">
+            <div class="stat-icon purple">
+                <i class="bi bi-shield-lock-fill"></i>
+            </div>
+            <div class="stat-value">{{ data.admins }}</div>
+            <p class="stat-label">Administrators</p>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card">
+            <div class="stat-icon orange">
+                <i class="bi bi-megaphone-fill"></i>
+            </div>
+            <div class="stat-value">{{ data.announcements }}</div>
+            <p class="stat-label">Announcements</p>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card">
+            <div class="stat-icon teal">
+                <i class="bi bi-people-fill"></i>
+            </div>
+            <div class="stat-value">{{ data.communities }}</div>
+            <p class="stat-label">Communities</p>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card">
+            <div class="stat-icon red">
+                <i class="bi bi-journal-bookmark-fill"></i>
+            </div>
+            <div class="stat-value">{{ data.notes }}</div>
+            <p class="stat-label">Study Notes</p>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card">
+            <div class="stat-icon blue">
+                <i class="bi bi-briefcase-fill"></i>
+            </div>
+            <div class="stat-value">{{ data.placements }}</div>
+            <p class="stat-label">Placements</p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

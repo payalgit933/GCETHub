@@ -1,40 +1,46 @@
 {% extends "dashboard/dashboard_base.html" %}
 
+{% block title %}Study Notes{% endblock %}
+
 {% block content %}
 
-<h2>Study Notes</h2>
-
-<a href="{{ url_for('note.upload_note') }}" class="btn btn-primary">
-    Upload Notes
-</a>
-
-<hr>
+{% set title = "Study Notes" %}
+{% set subtitle = "Browse and download shared study materials" %}
+{% set action_url = url_for('note.upload_note') %}
+{% set action_text = "Upload Notes" %}
+{% set action_icon = "bi-cloud-upload" %}
+{% include "includes/page_header.html" %}
 
 {% for note in notes %}
 
-<div class="card p-3 mb-3">
-
-    <h3>{{ note.title }}</h3>
-
-    <p><strong>Subject:</strong> {{ note.subject }}</p>
-
-    <p><strong>Department:</strong> {{ note.department }}</p>
-
-    <p><strong>Year:</strong> {{ note.year }}</p>
-
-    <a href="{{ url_for('static', filename='uploads/notes/' + note.file_name) }}"
-       target="_blank"
-       class="btn btn-success">
-
-       Download PDF
-
-    </a>
-
+<div class="list-item-card">
+    <div class="d-flex justify-content-between align-items-start gap-3 flex-wrap">
+        <div>
+            <h5 class="item-title">{{ note.title }}</h5>
+            <div class="d-flex flex-wrap gap-3 mb-2">
+                <span class="item-meta"><i class="bi bi-book me-1"></i>{{ note.subject }}</span>
+                <span class="item-meta"><i class="bi bi-building me-1"></i>{{ note.department }}</span>
+                <span class="item-meta"><i class="bi bi-calendar me-1"></i>Year {{ note.year }}</span>
+            </div>
+        </div>
+        <a href="{{ url_for('static', filename='uploads/notes/' + note.file_name) }}"
+           target="_blank"
+           class="btn btn-outline-primary btn-sm">
+            <i class="bi bi-download me-1"></i> Download PDF
+        </a>
+    </div>
 </div>
 
 {% else %}
 
-<p>No notes uploaded yet.</p>
+<div class="empty-state">
+    <i class="bi bi-journal-x d-block"></i>
+    <h5>No notes uploaded yet</h5>
+    <p>Be the first to share study materials with your peers.</p>
+    <a href="{{ url_for('note.upload_note') }}" class="btn btn-primary">
+        <i class="bi bi-cloud-upload me-1"></i> Upload Notes
+    </a>
+</div>
 
 {% endfor %}
 

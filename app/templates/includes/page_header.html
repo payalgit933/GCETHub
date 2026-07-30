@@ -1,0 +1,36 @@
+<div class="page-header">
+    <div>
+        {% if breadcrumbs %}
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-1">
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('dashboard.home') }}">Dashboard</a>
+                </li>
+                {% for crumb in breadcrumbs %}
+                {% if loop.last %}
+                <li class="breadcrumb-item active" aria-current="page">{{ crumb.label }}</li>
+                {% else %}
+                <li class="breadcrumb-item">
+                    {% if crumb.url %}
+                    <a href="{{ crumb.url }}">{{ crumb.label }}</a>
+                    {% else %}
+                    {{ crumb.label }}
+                    {% endif %}
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ol>
+        </nav>
+        {% endif %}
+        <h1 class="page-title">{{ title }}</h1>
+        {% if subtitle %}
+        <p class="page-subtitle">{{ subtitle }}</p>
+        {% endif %}
+    </div>
+    {% if action_url %}
+    <a href="{{ action_url }}" class="btn btn-primary">
+        {% if action_icon %}<i class="bi {{ action_icon }} me-1"></i>{% endif %}
+        {{ action_text }}
+    </a>
+    {% endif %}
+</div>

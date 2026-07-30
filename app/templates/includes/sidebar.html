@@ -1,55 +1,88 @@
-<div class="col-md-2 bg-dark text-white min-vh-100 p-3">
+<aside class="dashboard-sidebar" id="dashboardSidebar">
 
-    <h4 class="text-center mb-4">
-        🎓 GCETHub
-    </h4>
+    <div class="sidebar-brand">
+        <a href="{{ url_for('dashboard.home') }}" class="brand-logo">
+            <div class="brand-icon">
+                <i class="bi bi-mortarboard-fill"></i>
+            </div>
+            <div>
+                <div class="brand-text">GCETHub</div>
+                <div class="brand-tagline">Student Portal</div>
+            </div>
+        </a>
+    </div>
 
-    <ul class="nav flex-column">
+    <nav class="sidebar-nav">
 
-        <li class="nav-item mb-2">
-            <a href="{{ url_for('dashboard.home') }}" class="nav-link text-white">
-                <i class="bi bi-house-door-fill"></i> Dashboard
-            </a>
-        </li>
+        <div class="sidebar-section-label">Main Menu</div>
 
-        <li class="nav-item mb-2">
-            <a href="{{ url_for('announcement.announcements') }}" class="nav-link text-white">
-                <i class="bi bi-megaphone-fill"></i> Announcements
-            </a>
-        </li>
+        <ul class="nav flex-column list-unstyled mb-0">
 
-        
-        <li class="nav-item mt-2">
-            <a href="{{ url_for('community.communities') }}" class="nav-link text-white">
-                <i class="bi bi-people-fill"></i> Communities
-            </a>
-        </li>
-        
-        <li class="nav-item mt-2">
-            <a href="{{ url_for('note.notes') }}" class="nav-link text-white">
-                <i class="bi bi-journal-bookmark-fill"></i> Notes
-            </a>
-        </li>
-        
-        <li class="nav-item mt-2">
-            <a href="{{ url_for('placement.placements') }}" class="nav-link text-white">
-                <i class="bi bi-briefcase-fill"></i> Placements
-            </a>
-        </li>
-        
-        <li class="nav-item mt-2">
-            <a href="{{ url_for('profile.my_profile') }}" class="nav-link text-white">
-                <i class="bi bi-person-circle"></i>
-                Profile
-            </a>
-        </li>
-        
-        <li class="nav-item mt-4">
-            <a href="{{ url_for('auth.logout') }}" class="nav-link text-danger">
-                <i class="bi bi-box-arrow-right"></i> Logout
-            </a>
-        </li>
+            <li class="nav-item">
+                <a href="{{ url_for('dashboard.home') }}"
+                   class="nav-link {% if request.endpoint == 'dashboard.home' %}active{% endif %}">
+                    <i class="bi bi-grid-fill"></i> Dashboard
+                </a>
+            </li>
 
-    </ul>
+            <li class="nav-item">
+                <a href="{{ url_for('announcement.announcements') }}"
+                   class="nav-link {% if request.endpoint in ['announcement.announcements', 'announcement.add_announcement'] %}active{% endif %}">
+                    <i class="bi bi-megaphone-fill"></i> Announcements
+                </a>
+            </li>
 
-</div>
+            <li class="nav-item">
+                <a href="{{ url_for('community.communities') }}"
+                   class="nav-link {% if request.endpoint in ['community.communities', 'community.add_community'] %}active{% endif %}">
+                    <i class="bi bi-people-fill"></i> Communities
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ url_for('note.notes') }}"
+                   class="nav-link {% if request.endpoint in ['note.notes', 'note.upload_note'] %}active{% endif %}">
+                    <i class="bi bi-journal-bookmark-fill"></i> Notes
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ url_for('placement.placements') }}"
+                   class="nav-link {% if request.endpoint in ['placement.placements', 'placement.add_placement'] %}active{% endif %}">
+                    <i class="bi bi-briefcase-fill"></i> Placements
+                </a>
+            </li>
+
+        </ul>
+
+        <div class="sidebar-section-label mt-3">Account</div>
+
+        <ul class="nav flex-column list-unstyled mb-0">
+
+            <li class="nav-item">
+                <a href="{{ url_for('profile.my_profile') }}"
+                   class="nav-link {% if request.endpoint in ['profile.my_profile', 'profile.edit_profile', 'profile.change_password', 'profile.upload_profile_picture'] %}active{% endif %}">
+                    <i class="bi bi-person-circle"></i> Profile
+                </a>
+            </li>
+
+            {% if current_user.role == "admin" %}
+            <li class="nav-item">
+                <a href="{{ url_for('admin.admin_dashboard') }}"
+                   class="nav-link {% if request.endpoint == 'admin.admin_dashboard' %}active{% endif %}">
+                    <i class="bi bi-shield-lock-fill"></i> Admin Panel
+                </a>
+            </li>
+            {% endif %}
+
+        </ul>
+
+    </nav>
+
+    <div class="sidebar-footer">
+        <a href="{{ url_for('auth.logout') }}" class="nav-link logout-link">
+            <i class="bi bi-box-arrow-right"></i> Sign Out
+        </a>
+    </div>
+
+</aside>

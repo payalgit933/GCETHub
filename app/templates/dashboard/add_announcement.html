@@ -1,41 +1,37 @@
 {% extends "dashboard/dashboard_base.html" %}
 
+{% block title %}Add Announcement{% endblock %}
+
 {% block content %}
 
-<h2>Add Announcement</h2>
+{% set title = "New Announcement" %}
+{% set subtitle = "Publish a notice for all students" %}
+{% set breadcrumbs = [{"label": "Announcements", "url": url_for('announcement.announcements')}, {"label": "New Announcement"}] %}
+{% include "includes/page_header.html" %}
 
-<form method="POST">
+<div class="form-card">
+    <form method="POST">
 
-<div class="mb-3">
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input type="text" name="title" class="form-control" required>
+        </div>
 
-<label>Title</label>
+        <div class="mb-3">
+            <label class="form-label">Content</label>
+            <textarea name="content" rows="6" class="form-control" required></textarea>
+        </div>
 
-<input
-type="text"
-name="title"
-class="form-control"
-required>
+        <div class="d-flex gap-2">
+            <button class="btn btn-primary">
+                <i class="bi bi-send me-1"></i> Publish
+            </button>
+            <a href="{{ url_for('announcement.announcements') }}" class="btn btn-outline-secondary">
+                Cancel
+            </a>
+        </div>
 
+    </form>
 </div>
-
-<div class="mb-3">
-
-<label>Content</label>
-
-<textarea
-name="content"
-rows="6"
-class="form-control"
-required></textarea>
-
-</div>
-
-<button class="btn btn-primary">
-
-Publish
-
-</button>
-
-</form>
 
 {% endblock %}

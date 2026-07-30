@@ -49,4 +49,6 @@ def create_app():
     from app.routes.placement import placement
     app.register_blueprint(placement)
 
+    from app.routes.admin import admin
+    app.register_blueprint(admin)
     return app

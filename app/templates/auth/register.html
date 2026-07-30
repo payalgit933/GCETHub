@@ -1,134 +1,100 @@
 {% extends "base.html" %}
 
+{% block title %}Register{% endblock %}
+
 {% block content %}
 
-<div class="container py-5">
+<div class="auth-wrapper">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
 
-<div class="row justify-content-center align-items-center">
-
-    <div class="col-lg-6">
-
-        <div class="card shadow-lg border-0 rounded-4">
-
-            <div class="card-body p-5">
-
-                <h2 class="text-center mb-4">
-                    Create Your GCETHub Account
-                </h2>
-
-                <form method="POST">
-
-                    <div class="mb-3">
-                        <label class="form-label">Full Name</label>
-                        <input type="text" class="form-control" name="name" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Enrollment Number</label>
-                        <input type="text" class="form-control" name="enrollment" required>
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-md-6 mb-3">
-
-                            <label class="form-label">Department</label>
-
-                            <select class="form-select" name="department">
-
-                                <option>MCA</option>
-                                <option>CSE</option>
-                                <option>IT</option>
-                                <option>ECE</option>
-                                <option>EE</option>
-                                <option>ME</option>
-
-                            </select>
-
+                <div class="auth-card">
+                    <div class="auth-card-header">
+                        <div class="auth-logo">
+                            <i class="bi bi-mortarboard-fill"></i>
                         </div>
+                        <h2>Create Account</h2>
+                        <p>Join the GCETHub student community</p>
+                    </div>
 
-                        <div class="col-md-3 mb-3">
+                    <div class="auth-card-body">
+                        <form method="POST">
 
-                            <label class="form-label">Year</label>
+                            <div class="mb-3">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-control" name="name" required>
+                            </div>
 
-                            <select class="form-select" name="year">
+                            <div class="mb-3">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control" name="email" required>
+                            </div>
 
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
+                            <div class="mb-3">
+                                <label class="form-label">Enrollment Number</label>
+                                <input type="text" class="form-control" name="enrollment" required>
+                            </div>
 
-                            </select>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Department</label>
+                                    <select class="form-select" name="department">
+                                        <option>MCA</option>
+                                        <option>CSE</option>
+                                        <option>IT</option>
+                                        <option>ECE</option>
+                                        <option>EE</option>
+                                        <option>ME</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label">Year</label>
+                                    <select class="form-select" name="year">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label">Section</label>
+                                    <select class="form-select" name="section">
+                                        <option>A</option>
+                                        <option>B</option>
+                                        <option>C</option>
+                                    </select>
+                                </div>
+                            </div>
 
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" name="password" required>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control" name="confirm_password" required>
+                            </div>
+
+                            <button class="btn btn-primary w-100 py-2">
+                                Create Account
+                            </button>
+
+                        </form>
+
+                        <div class="text-center mt-4">
+                            <span class="text-muted small">Already have an account?</span>
+                            <a href="{{ url_for('auth.login') }}" class="fw-semibold text-decoration-none ms-1">
+                                Sign In
+                            </a>
                         </div>
-
-                        <div class="col-md-3 mb-3">
-
-                            <label class="form-label">Section</label>
-
-                            <select class="form-select" name="section">
-
-                                <option>A</option>
-                                <option>B</option>
-                                <option>C</option>
-
-                            </select>
-
-                        </div>
-
                     </div>
-
-                    <div class="mb-3">
-
-                        <label class="form-label">Password</label>
-
-                        <input type="password"
-                               class="form-control"
-                               name="password"
-                               required>
-
-                    </div>
-
-                    <div class="mb-4">
-
-                        <label class="form-label">Confirm Password</label>
-
-                        <input type="password"
-                               class="form-control"
-                               name="confirm_password"
-                               required>
-
-                    </div>
-
-                    <button class="btn btn-primary w-100">
-                        Create Account
-                    </button>
-
-                </form>
-
-                <div class="text-center mt-4">
-
-                    Already have an account?
-
-                    <a href="{{ url_for('auth.login') }}">
-                        Login
-                    </a>
-
                 </div>
 
             </div>
-
         </div>
-
     </div>
-
-</div>
-
 </div>
 
 {% endblock %}

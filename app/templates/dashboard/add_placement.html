@@ -4,49 +4,62 @@
 
 {% block content %}
 
-<h2 class="mb-4">Add Placement</h2>
+{% set title = "Add Placement" %}
+{% set subtitle = "Post a new job or internship opportunity" %}
+{% set breadcrumbs = [{"label": "Placements", "url": url_for('placement.placements')}, {"label": "Add Placement"}] %}
+{% include "includes/page_header.html" %}
 
-<form method="POST">
+<div class="form-card" style="max-width: 720px;">
+    <form method="POST">
 
-    <div class="mb-3">
-        <label>Company</label>
-        <input type="text" name="company" class="form-control" required>
-    </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Company</label>
+                <input type="text" name="company" class="form-control" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Role</label>
+                <input type="text" name="role" class="form-control" required>
+            </div>
+        </div>
 
-    <div class="mb-3">
-        <label>Role</label>
-        <input type="text" name="role" class="form-control" required>
-    </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Package</label>
+                <input type="text" name="package" class="form-control" placeholder="e.g. 6 LPA" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Location</label>
+                <input type="text" name="location" class="form-control" required>
+            </div>
+        </div>
 
-    <div class="mb-3">
-        <label>Package</label>
-        <input type="text" name="package" class="form-control" required>
-    </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Eligibility</label>
+                <input type="text" name="eligibility" class="form-control" placeholder="e.g. CSE, IT — 7+ CGPA" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Deadline</label>
+                <input type="date" name="deadline" class="form-control" required>
+            </div>
+        </div>
 
-    <div class="mb-3">
-        <label>Location</label>
-        <input type="text" name="location" class="form-control" required>
-    </div>
+        <div class="mb-3">
+            <label class="form-label">Apply Link</label>
+            <input type="url" name="apply_link" class="form-control" placeholder="https://" required>
+        </div>
 
-    <div class="mb-3">
-        <label>Eligibility</label>
-        <input type="text" name="eligibility" class="form-control" required>
-    </div>
+        <div class="d-flex gap-2">
+            <button class="btn btn-primary">
+                <i class="bi bi-plus-lg me-1"></i> Add Placement
+            </button>
+            <a href="{{ url_for('placement.placements') }}" class="btn btn-outline-secondary">
+                Cancel
+            </a>
+        </div>
 
-    <div class="mb-3">
-        <label>Deadline</label>
-        <input type="date" name="deadline" class="form-control" required>
-    </div>
-
-    <div class="mb-3">
-        <label>Apply Link</label>
-        <input type="url" name="apply_link" class="form-control" required>
-    </div>
-
-    <button class="btn btn-primary">
-        Add Placement
-    </button>
-
-</form>
+    </form>
+</div>
 
 {% endblock %}

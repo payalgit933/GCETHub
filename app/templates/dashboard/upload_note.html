@@ -1,35 +1,54 @@
 {% extends "dashboard/dashboard_base.html" %}
 
+{% block title %}Upload Notes{% endblock %}
+
 {% block content %}
 
-<h2>Upload Notes</h2>
+{% set title = "Upload Notes" %}
+{% set subtitle = "Share study materials with fellow students" %}
+{% set breadcrumbs = [{"label": "Study Notes", "url": url_for('note.notes')}, {"label": "Upload"}] %}
+{% include "includes/page_header.html" %}
 
-<form method="POST" enctype="multipart/form-data">
+<div class="form-card">
+    <form method="POST" enctype="multipart/form-data">
 
-    <input type="text" name="title" placeholder="Title" required>
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input type="text" name="title" class="form-control" placeholder="e.g. DBMS Unit 1 Notes" required>
+        </div>
 
-    <br><br>
+        <div class="mb-3">
+            <label class="form-label">Subject</label>
+            <input type="text" name="subject" class="form-control" placeholder="e.g. Database Management" required>
+        </div>
 
-    <input type="text" name="subject" placeholder="Subject" required>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Department</label>
+                <input type="text" name="department" class="form-control" placeholder="e.g. CSE" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Year</label>
+                <input type="text" name="year" class="form-control" placeholder="e.g. 3" required>
+            </div>
+        </div>
 
-    <br><br>
+        <div class="mb-3">
+            <label class="form-label">PDF File</label>
+            <input type="file" name="file" class="form-control" accept=".pdf" required>
+            <div class="form-text">Only PDF files are accepted.</div>
+        </div>
 
-    <input type="text" name="department" placeholder="Department" required>
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-cloud-upload me-1"></i> Upload PDF
+            </button>
+            <a href="{{ url_for('note.notes') }}" class="btn btn-outline-secondary">
+                Cancel
+            </a>
+        </div>
 
-    <br><br>
-
-    <input type="text" name="year" placeholder="Year" required>
-
-    <br><br>
-
-    <input type="file" name="file" accept=".pdf" required>
-
-    <br><br>
-
-    <button type="submit">
-        Upload PDF
-    </button>
-
-</form>
+    </form>
+</div>
 
 {% endblock %}
