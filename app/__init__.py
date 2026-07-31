@@ -23,6 +23,7 @@ def create_app():
     from app.models.community import Community
     from app.models.note import Note
     from app.models.placement import Placement
+    from app.models.event import Event
     
     # Register Blueprints
     from app.routes.home import home
@@ -51,4 +52,8 @@ def create_app():
 
     from app.routes.admin import admin
     app.register_blueprint(admin)
+
+    from app.routes.event import event
+    app.register_blueprint(event)
+
     return app
