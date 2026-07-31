@@ -1,6 +1,8 @@
 from flask import Flask
 from config import Config
 from app.extensions import db, login_manager, migrate
+from app.models.notification import Notification
+
 
 def create_app():
     app = Flask(__name__)
@@ -23,8 +25,9 @@ def create_app():
     from app.models.community import Community
     from app.models.note import Note
     from app.models.placement import Placement
+    from app.models.notification import Notification
     from app.models.event import Event
-    
+
     # Register Blueprints
     from app.routes.home import home
     app.register_blueprint(home)
@@ -52,8 +55,14 @@ def create_app():
 
     from app.routes.admin import admin
     app.register_blueprint(admin)
-
+    
+    from app.routes.notification import notification
+    app.register_blueprint(notification)
+    
     from app.routes.event import event
     app.register_blueprint(event)
-
+    
+    
     return app
+
+    

@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 from flask_login import login_required, current_user
 from app.extensions import db
 from app.models.announcement import Announcement
+from app.utils.notifications import create_notification
 
 announcement = Blueprint("announcement", __name__)
 
@@ -38,6 +39,11 @@ def add_announcement():
 
         db.session.add(new_post)
         db.session.commit()
+        create_notification(
+            title="New Announcement",
+            message=title,
+            type="announcement"
+        )
 
         flash("Announcement Added Successfully!", "success")
 

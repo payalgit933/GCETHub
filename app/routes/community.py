@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 from app.extensions import db
 from app.models.community import Community
+from app.utils.notifications import create_notification
 
 community = Blueprint("community", __name__)
 
@@ -40,6 +41,11 @@ def add_community():
 
         db.session.add(new_community)
         db.session.commit()
+        create_notification(
+            title="New Community",
+            message=name,
+            type="community"
+        )
 
         flash("Community Added Successfully!", "success")
 

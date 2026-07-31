@@ -4,6 +4,7 @@ from werkzeug.utils import secure_filename
 from app.extensions import db
 from app.models.note import Note
 import os
+from app.utils.notifications import create_notification
 
 note = Blueprint("note", __name__)
 
@@ -54,6 +55,11 @@ def upload_note():
 
         db.session.add(new_note)
         db.session.commit()
+        create_notification(
+            title="New Note Uploaded",
+            message=title,
+            type="notes"
+        )
 
         flash("Note uploaded successfully!", "success")
 

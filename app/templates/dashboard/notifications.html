@@ -1,0 +1,37 @@
+{% extends "dashboard/dashboard_base.html" %}
+
+{% block title %}Notifications{% endblock %}
+
+{% block content %}
+
+<h2>Notifications</h2>
+
+{% if notifications %}
+
+<ul class="list-group">
+
+{% for n in notifications %}
+
+<li class="list-group-item">
+
+<strong>{{ n.type.title() }}</strong><br>
+
+{{ n.message }}
+
+<small class="text-muted float-end">
+{{ n.created_at.strftime("%d %b %Y %I:%M %p") }}
+</small>
+
+</li>
+
+{% endfor %}
+
+</ul>
+
+{% else %}
+
+<p>No notifications yet.</p>
+
+{% endif %}
+
+{% endblock %}

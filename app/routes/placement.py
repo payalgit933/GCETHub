@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from app.extensions import db
 from app.models.placement import Placement
 from flask import abort
+from app.utils.notifications import create_notification
 
 placement = Blueprint("placement", __name__)
 
@@ -50,6 +51,11 @@ def add_placement():
 
         db.session.add(new_placement)
         db.session.commit()
+        create_notification(
+            title="New Placement Opportunity",
+            message=company,
+            type="placements"
+        )
 
         flash("Placement added successfully!", "success")
 
