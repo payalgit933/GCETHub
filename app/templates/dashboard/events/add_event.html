@@ -1,0 +1,60 @@
+{% extends "dashboard/dashboard_base.html" %}
+
+{% block title %}Add Event{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+<h2>Add Event</h2>
+
+<form method="POST">
+
+<div class="mb-3">
+<label>Title</label>
+<input type="text" name="title" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Description</label>
+<textarea name="description" class="form-control" rows="4" required></textarea>
+</div>
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+<label>Date</label>
+<input type="date" name="event_date" class="form-control" required>
+</div>
+
+<div class="col-md-6 mb-3">
+<label>Time</label>
+<input type="time" name="event_time" class="form-control" required>
+</div>
+
+</div>
+
+<div class="mb-3">
+<label>Venue</label>
+<input type="text" name="venue" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Organizer</label>
+<input type="text" name="organizer" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Registration Link</label>
+<input type="url" name="registration_link" class="form-control">
+</div>
+
+<button class="btn btn-primary">
+Add Event
+</button>
+
+</form>
+
+</div>
+
+{% endblock %}

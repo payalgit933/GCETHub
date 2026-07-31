@@ -1,0 +1,45 @@
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Venue</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    {% for event in events %}
+
+    <tr>
+
+        <td>{{ event.title }}</td>
+        <td>{{ event.event_date }}</td>
+        <td>{{ event.event_time }}</td>
+        <td>{{ event.venue }}</td>
+
+        <td>
+
+            <a href="{{ url_for('event.edit_event', id=event.id) }}"
+               class="btn btn-warning btn-sm">
+                Edit
+            </a>
+
+            <a href="{{ url_for('event.delete_event', id=event.id) }}"
+               class="btn btn-danger btn-sm"
+               onclick="return confirm('Delete this event?')">
+                Delete
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
