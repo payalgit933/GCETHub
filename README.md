@@ -102,3 +102,32 @@ A modern, centralized platform empowering students and administrators with real-
 ---
 
 ## 📂 Project Architecture
+
+GCETHub/├── app/│   ├── models/        # SQLAlchemy database models (User, Note, Event, etc.)│   ├── routes/        # Blueprint route handlers (Auth, Notes, Admin, etc.)│   ├── static/        # Static assets (Custom CSS, JavaScript, Images, Uploads)│   ├── templates/     # Jinja2 HTML templates & layout partials│   ├── utils/         # Helpers, custom decorators, & upload handlers│   ├── extensions.py  # Flask extensions initialization (db, login_manager)│   └── init.py    # Application factory├── migrations/        # Database migration scripts (Alembic)├── config.py          # Environment settings & credentials setup├── run.py             # Application entry point├── requirements.txt   # Python dependency list└── README.md          # Project documentation
+---
+
+## ⚙️ Getting Started
+
+Follow these steps to set up **GCETHub** locally on your machine.
+
+### Prerequisites
+* **Python 3.10+** installed
+* **MySQL Server** installed and running
+
+---
+
+### Step 1: Clone the Repository
+```bash
+git clone [https://github.com/payalgit933/GCETHub.git](https://github.com/payalgit933/GCETHub.git)
+cd GCETHub
+Step 2: Set Up Virtual EnvironmentOn Windows:Bashpython -m venv venv
+venv\Scripts\activate
+On macOS / Linux:Bashpython3 -m venv venv
+source venv/bin/activate
+Step 3: Install DependenciesBashpip install -r requirements.txt
+Step 4: Configure Database & EnvironmentCreate a MySQL database:SQLCREATE DATABASE gcethub;
+Update configuration settings in config.py:PythonSQLALCHEMY_DATABASE_URI = "mysql+pymysql://YOUR_USERNAME:YOUR_PASSWORD@localhost/gcethub"
+SECRET_KEY = "your-custom-secret-key"
+Step 5: Run Database MigrationsBashflask db upgrade
+Step 6: Launch ApplicationBashpython run.py
+🚀 Access the platform by opening your browser at http://127.0.0.1:5000🖼️ ScreenshotsStudent DashboardAdmin AnalyticsAcademic NotesPlacement Portal🚀 Future Roadmap[x] Core Authentication & Role-Based Access Control[x] Announcements, Notes, Placements, Events & Community Modules[x] Automatic In-App Notifications[ ] 🤖 AI Campus Assistant: Smart Q&A bot for syllabus & college FAQs[ ] 💬 Real-Time Community Chat: Instant messaging for student clubs[ ] 📊 Academic Tracker: Personal attendance and marks manager[ ] 📱 Mobile Application: Cross-platform Flutter / React Native client[ ] 📧 Automated Email Digests: Priority alerts for high-stakes notices👨‍💻 Developer & CreditsDeveloped with ❤️ by Payal KumariMCA Student @ Galgotias College of Engineering & TechnologyFull Stack Developer🌐 GitHub: @payalgit933💼 Project Repository: GCETHub Repository📄 LicenseThis project was developed solely for educational and academic purposes as an MCA Mini Project at Galgotias College of Engineering & Technology.⭐ If you find this project helpful, please give it a star on GitHub! ⭐
