@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, abort
 from flask_login import login_required, current_user
+from sqlalchemy import or_
+
 from app.extensions import db
 from app.models.event import Event
 
@@ -9,7 +11,6 @@ event = Blueprint("event", __name__)
 # ----------------------------
 # View All Events
 # ----------------------------
-from sqlalchemy import or_
 @event.route("/events")
 @login_required
 def events():
@@ -36,6 +37,7 @@ def events():
         events=events,
         search=search
     )
+
 
 # ----------------------------
 # Add Event

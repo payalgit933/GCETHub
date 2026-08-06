@@ -1,4 +1,3 @@
-
 {% extends "dashboard/dashboard_base.html" %}
 
 {% block title %}Events{% endblock %}
@@ -73,6 +72,8 @@
                     Delete
                 </a>
 
+                {% else %}
+                <span class="text-muted">View Only</span>
                 {% endif %}
 
             </td>
@@ -112,4 +113,3 @@
 </div>
 
 {% endblock %}
-```
