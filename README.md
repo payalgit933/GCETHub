@@ -6,191 +6,182 @@
 
 A modern campus management platform built using **Flask, MySQL, Bootstrap, and Jinja2** that centralizes announcements, study materials, placements, events, communities, and notifications into one unified portal.
 
-![Python](https://img.shields.io/badge/Python-3.13-blue?style=for-the-badge&logo=python)
-![Flask](https://img.shields.io/badge/Flask-3.x-black?style=for-the-badge&logo=flask)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-purple?style=for-the-badge&logo=bootstrap)
-![MySQL](https://img.shields.io/badge/MySQL-Database-blue?style=for-the-badge&logo=mysql)
-![Status](https://img.shields.io/badge/Project-Completed-success?style=for-the-badge)
+[![Python](https://img.shields.io/badge/Python-3.13-blue?style=for-the-badge&logo=python)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-3.x-black?style=for-the-badge&logo=flask)](https://flask.palletsprojects.com/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-purple?style=for-the-badge&logo=bootstrap)](https://getbootstrap.com/)
+[![MySQL](https://img.shields.io/badge/MySQL-Database-blue?style=for-the-badge&logo=mysql)](https://www.mysql.com/)
+[![Status](https://img.shields.io/badge/Project-Completed-success?style=for-the-badge)](#)
 
 </div>
 
 ---
 
-# 📖 About
+## 📌 Table of Contents
+
+- [📖 About](#-about)
+- [✨ Features](#-features)
+  - [🔐 Authentication](#-authentication)
+  - [📊 Dashboard](#-dashboard)
+  - [📢 Announcements](#-announcements)
+  - [👥 Communities](#-communities)
+  - [📄 Study Notes](#-study-notes)
+  - [💼 Placements](#-placements)
+  - [📅 Events](#-events)
+  - [🔔 Notifications](#-notifications)
+  - [👤 Profile](#-profile)
+- [🔒 Role-Based Access](#-role-based-access)
+- [🎨 UI / UX Highlights](#-ui--ux-highlights)
+- [🛠 Tech Stack](#-tech-stack)
+- [📂 Project Structure](#-project-structure)
+- [⚙ Installation](#-installation)
+- [📸 Screenshots](#-screenshots)
+- [🚀 Future Scope](#-future-scope)
+- [👩‍💻 Developer](#-developer)
+- [📜 License](#-license)
+
+---
+
+## 📖 About
 
 **GCETHub** is a centralized campus collaboration platform developed for students and administrators.
 
 Instead of relying on multiple WhatsApp groups, emails, and notice boards, GCETHub provides a **single dashboard** where students can access:
 
-- 📢 Announcements
-- 📄 Study Notes
-- 💼 Placements
-- 📅 Events
-- 👥 Student Communities
-- 🔔 Notifications
+* 📢 Announcements
+* 📄 Study Notes
+* 💼 Placements
+* 📅 Events
+* 👥 Student Communities
+* 🔔 Notifications
 
 The system provides **role-based access** so administrators can manage campus content while students can securely access academic resources.
 
 ---
 
-# ✨ Features
+## ✨ Features
 
-## 🔐 Authentication
-
-- User Registration
-- Secure Login
-- Logout
-- Password Hashing
-- Role-Based Access (Admin / Student)
-
----
-
-## 📊 Dashboard
-
-### Student Dashboard
-
-- Total Notes
-- Total Events
-- Total Placements
-- Total Communities
-- Total Announcements
-- Upcoming Events Widget
-- Latest Activity Widget
-- Personalized Statistics
-
-### Admin Dashboard
-
-- Overall Platform Statistics
-- Latest Uploads
-- Recent Announcements
-- Recent Placements
-- Recent Events
-- Upload Statistics
+### 🔐 Authentication
+* User Registration
+* Secure Login
+* Logout
+* Password Hashing
+* Role-Based Access (Admin / Student)
 
 ---
 
-## 📢 Announcements
+### 📊 Dashboard
 
-- Add Announcement (Admin)
-- Edit Announcement (Admin)
-- Delete Announcement (Admin)
-- Search Announcements
-- Rich Text Formatting
-- Line Break Preservation
-- Students can View Only
+#### Student Dashboard
+* Total Notes
+* Total Events
+* Total Placements
+* Total Communities
+* Total Announcements
+* Upcoming Events Widget
+* Latest Activity Widget
+* Personalized Statistics
 
----
-
-## 👥 Communities
-
-- Browse Communities
-- Search Communities
-- Category Badges
-- Create Community (Admin)
-- Edit Community (Admin)
-- Delete Community (Admin)
-
-Students have **read-only access**.
+#### Admin Dashboard
+* Overall Platform Statistics
+* Latest Uploads
+* Recent Announcements
+* Recent Placements
+* Recent Events
+* Upload Statistics
 
 ---
 
-## 📄 Study Notes
-
-- Upload PDF
-- View PDF
-- Download Notes
-- Search Notes
-- Edit Own Notes
-- Delete Own Notes
-
-### Permissions
-
-Students
-
-- Upload Notes
-- Edit Only Their Own Notes
-- Delete Only Their Own Notes
-
-Admin
-
-- Full Control
+### 📢 Announcements
+* Add Announcement (Admin)
+* Edit Announcement (Admin)
+* Delete Announcement (Admin)
+* Search Announcements
+* Rich Text Formatting
+* Line Break Preservation
+* Students can View Only
 
 ---
 
-## 💼 Placements
+### 👥 Communities
+* Browse Communities
+* Search Communities
+* Category Badges
+* Create Community (Admin)
+* Edit Community (Admin)
+* Delete Community (Admin)
 
-- Internship Listings
-- Job Listings
-- Company Details
-- Apply Links
-- Search Placements
-
-Admin can
-
-- Add
-- Edit
-- Delete
-
-Students can
-
-- View
-- Search
-- Apply
+> ℹ️ *Students have **read-only access**.*
 
 ---
 
-## 📅 Events
+### 📄 Study Notes
+* Upload PDF
+* View PDF
+* Download Notes
+* Search Notes
+* Edit Own Notes
+* Delete Own Notes
 
-- Campus Events
-- Venue
-- Date
-- Time
-- Organizer
-- Registration Links
-- Search Events
-
-Admin
-
-- CRUD Operations
-
-Students
-
-- View Only
+#### Permissions
+* **Students:** Upload Notes, Edit Only Their Own Notes, Delete Only Their Own Notes
+* **Admin:** Full Control
 
 ---
 
-## 🔔 Notifications
+### 💼 Placements
+* Internship Listings
+* Job Listings
+* Company Details
+* Apply Links
+* Search Placements
 
-Automatic notifications when new
+* **Admin can:** Add, Edit, Delete
+* **Students can:** View, Search, Apply
 
-- Announcement
-- Placement
-- Note
-- Event
+---
+
+### 📅 Events
+* Campus Events
+* Venue
+* Date
+* Time
+* Organizer
+* Registration Links
+* Search Events
+
+* **Admin:** CRUD Operations
+* **Students:** View Only
+
+---
+
+### 🔔 Notifications
+Automatic notifications when new:
+* Announcement
+* Placement
+* Note
+* Event
 
 are added.
 
-Features
-
-- Notification Badge
-- Read Status
-- Recent Notifications
-
----
-
-## 👤 Profile
-
-- Profile Picture Upload
-- Change Profile Picture
-- Edit Profile
-- Change Password
+#### Features
+* Notification Badge
+* Read Status
+* Recent Notifications
 
 ---
 
-# 🔒 Role-Based Access
+### 👤 Profile
+* Profile Picture Upload
+* Change Profile Picture
+* Edit Profile
+* Change Password
+
+---
+
+## 🔒 Role-Based Access
 
 | Feature | Student | Admin |
-|----------|----------|--------|
+| :--- | :---: | :---: |
 | View Announcements | ✅ | ✅ |
 | Add Announcement | ❌ | ✅ |
 | Edit Announcement | ❌ | ✅ |
@@ -215,43 +206,43 @@ Features
 
 ---
 
-# 🎨 UI / UX Highlights
+## 🎨 UI / UX Highlights
 
-- Modern Glassmorphism Design
-- Responsive Layout
-- Bootstrap 5
-- Sticky Navigation Bar
-- Sidebar Navigation
-- Search Bars Across Modules
-- Empty State Components
-- Latest Activity Widgets
-- Statistic Cards
-- Mobile Friendly Design
+* Modern Glassmorphism Design
+* Responsive Layout
+* Bootstrap 5
+* Sticky Navigation Bar
+* Sidebar Navigation
+* Search Bars Across Modules
+* Empty State Components
+* Latest Activity Widgets
+* Statistic Cards
+* Mobile Friendly Design
 
 ---
 
-# 🛠 Tech Stack
+## 🛠 Tech Stack
 
 | Category | Technology |
-|-----------|------------|
-| Backend | Flask |
-| Language | Python 3.13 |
-| Database | MySQL |
-| ORM | Flask-SQLAlchemy |
-| Authentication | Flask-Login |
-| Migration | Flask-Migrate |
-| Frontend | HTML5 |
-| Styling | CSS3 |
-| UI Framework | Bootstrap 5 |
-| Icons | Bootstrap Icons |
-| Template Engine | Jinja2 |
-| Version Control | Git & GitHub |
+| :--- | :--- |
+| **Backend** | Flask |
+| **Language** | Python 3.13 |
+| **Database** | MySQL |
+| **ORM** | Flask-SQLAlchemy |
+| **Authentication** | Flask-Login |
+| **Migration** | Flask-Migrate |
+| **Frontend** | HTML5 |
+| **Styling** | CSS3 |
+| **UI Framework** | Bootstrap 5 |
+| **Icons** | Bootstrap Icons |
+| **Template Engine** | Jinja2 |
+| **Version Control** | Git & GitHub |
 
 ---
 
-# 📂 Project Structure
+## 📂 Project Structure
 
-```
+```text
 GCETHub
 │
 ├── app
@@ -274,9 +265,6 @@ GCETHub
 ├── requirements.txt
 ├── run.py
 └── README.md
-```
-
----
 
 # ⚙ Installation
 
