@@ -8,17 +8,32 @@ from app.utils.notifications import create_notification
 placement = Blueprint("placement", __name__)
 
 
+from sqlalchemy import or_
+
 @placement.route("/placements")
 @login_required
 def placements():
 
-    placements = Placement.query.order_by(
+    search = request.args.get("search", "")
+
+    query = Placement.query
+
+    if search:
+        query = query.filter(
+            or_(
+                Placement.company.ilike(f"%{search}%"),
+                Placement.role.ilike(f"%{search}%")
+            )
+        )
+
+    placements = query.order_by(
         Placement.created_at.desc()
     ).all()
 
     return render_template(
         "dashboard/placements.html",
-        placements=placements
+        placements=placements,
+        search=search
     )
 
 
@@ -61,4 +76,51 @@ def add_placement():
 
         return redirect(url_for("placement.placements"))
 
+@placement.route("/placement/edit/<int:id>", methods=["GET", "POST"])
+@login_required
+def edit_placement(id):
+
+    if current_user.role != "admin":
+        abort(403)
+
+    placement = Placement.query.get_or_404(id)
+
+    if request.method == "POST":
+
+        placement.company = request.form.get("company")
+        placement.role = request.form.get("role")
+        placement.location = request.form.get("location")
+        placement.package = request.form.get("package")
+        placement.apply_link = request.form.get("apply_link")
+        placement.deadline = request.form.get("deadline")
+
+        db.session.commit()
+
+        flash("Placement updated successfully!", "success")
+
+        return redirect(url_for("placement.placements"))
+
+    return render_template(
+        "dashboard/edit_placement.html",
+        placement=placement
+    )
+
+
+@placement.route("/placement/delete/<int:id>")
+@login_required
+def delete_placement(id):
+
+    if current_user.role != "admin":
+        abort(403)
+
+    placement = Placement.query.get_or_404(id)
+
+    db.session.delete(placement)
+    db.session.commit()
+
+    flash("Placement deleted successfully!", "success")
+
+    return redirect(url_for("placement.placements"))
+
+    
     return render_template("dashboard/add_placement.html")

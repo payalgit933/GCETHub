@@ -62,7 +62,23 @@ def create_app():
     from app.routes.event import event
     app.register_blueprint(event)
     
-    
+    @app.context_processor
+    def notification_count():
+
+        from flask_login import current_user
+        from app.models.notification import Notification
+
+        if current_user.is_authenticated:
+
+            unread = Notification.query.filter_by(
+                user_id=current_user.id,
+                is_read=False
+            ).count()
+
+        else:
+            unread = 0
+
+        return dict(unread_notifications=unread)    
+        
     return app
 
-    

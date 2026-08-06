@@ -11,49 +11,91 @@
 {% set action_text = "Add Placement" %}
 {% set action_icon = "bi-plus-lg" %}
 {% endif %}
+
 {% include "includes/page_header.html" %}
+
+<!-- Search Form -->
+<form method="GET" class="mb-3">
+    <div class="input-group">
+        <input
+            type="text"
+            name="search"
+            class="form-control"
+            placeholder="Search company or role..."
+            value="{{ search }}">
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-search me-1"></i> Search
+        </button>
+    </div>
+</form>
 
 {% if placements %}
 
 <div class="row g-3">
 
-{% for placement in placements %}
+    {% for placement in placements %}
 
-<div class="col-md-6">
-    <div class="content-card h-100">
-        <div class="card-header-custom d-flex justify-content-between align-items-center">
-            <h5>{{ placement.company }}</h5>
-            <span class="item-badge">{{ placement.role }}</span>
-        </div>
-        <div class="card-body-custom">
-            <div class="row g-2 mb-3">
-                <div class="col-6">
-                    <div class="detail-label text-muted small">Package</div>
-                    <div class="fw-semibold">{{ placement.package }}</div>
-                </div>
-                <div class="col-6">
-                    <div class="detail-label text-muted small">Location</div>
-                    <div class="fw-semibold">{{ placement.location }}</div>
-                </div>
-                <div class="col-6">
-                    <div class="detail-label text-muted small">Eligibility</div>
-                    <div class="fw-semibold">{{ placement.eligibility }}</div>
-                </div>
-                <div class="col-6">
-                    <div class="detail-label text-muted small">Deadline</div>
-                    <div class="fw-semibold">{{ placement.deadline }}</div>
-                </div>
+    <div class="col-md-6">
+        <div class="content-card h-100">
+
+            <div class="card-header-custom d-flex justify-content-between align-items-center">
+                <h5>{{ placement.company }}</h5>
+                <span class="item-badge">{{ placement.role }}</span>
             </div>
-            <a href="{{ placement.apply_link }}"
-               target="_blank"
-               class="btn btn-primary btn-sm">
-                <i class="bi bi-box-arrow-up-right me-1"></i> Apply Now
-            </a>
+
+            <div class="card-body-custom">
+
+                <div class="row g-2 mb-3">
+
+                    <div class="col-6">
+                        <div class="detail-label text-muted small">Package</div>
+                        <div class="fw-semibold">{{ placement.package }}</div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="detail-label text-muted small">Location</div>
+                        <div class="fw-semibold">{{ placement.location }}</div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="detail-label text-muted small">Eligibility</div>
+                        <div class="fw-semibold">{{ placement.eligibility }}</div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="detail-label text-muted small">Deadline</div>
+                        <div class="fw-semibold">{{ placement.deadline }}</div>
+                    </div>
+
+                </div>
+
+                {% if current_user.role == "admin" %}
+
+                <a href="{{ url_for('placement.edit_placement', id=placement.id) }}"
+                   class="btn btn-warning btn-sm">
+                    Edit
+                </a>
+
+                <a href="{{ url_for('placement.delete_placement', id=placement.id) }}"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Delete this placement?')">
+                    Delete
+                </a>
+
+                {% endif %}
+
+                <a href="{{ placement.apply_link }}"
+                   target="_blank"
+                   class="btn btn-primary btn-sm">
+                    <i class="bi bi-box-arrow-up-right me-1"></i> Apply Now
+                </a>
+
+            </div>
+
         </div>
     </div>
-</div>
 
-{% endfor %}
+    {% endfor %}
 
 </div>
 
@@ -61,8 +103,15 @@
 
 <div class="empty-state">
     <i class="bi bi-briefcase d-block"></i>
-    <h5>No placement opportunities yet</h5>
-    <p>New job and internship listings will appear here.</p>
+
+    {% if search %}
+        <h5>No matching placements found</h5>
+        <p>No placement matches "<strong>{{ search }}</strong>".</p>
+    {% else %}
+        <h5>No placement opportunities yet</h5>
+        <p>New job and internship listings will appear here.</p>
+    {% endif %}
+
     {% if current_user.role == "admin" %}
     <a href="{{ url_for('placement.add_placement') }}" class="btn btn-primary">
         <i class="bi bi-plus-lg me-1"></i> Add Placement
@@ -73,3 +122,4 @@
 {% endif %}
 
 {% endblock %}
+```

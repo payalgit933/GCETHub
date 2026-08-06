@@ -69,6 +69,16 @@
 
             </ul>
             
+            <a href="{{ url_for('notification.notifications') }}" class="position-relative me-3">
+
+                <i class="bi bi-bell fs-5"></i>
+
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {{ unread_notifications }}
+                </span>
+
+            </a>
+
             <img src="{{ url_for('static', filename='uploads/profile_pics/' + current_user.profile_pic) }}"
                  width="40"
                  class="rounded-circle">

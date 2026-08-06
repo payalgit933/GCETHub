@@ -1,0 +1,70 @@
+{% extends "dashboard/dashboard_base.html" %}
+
+{% block title %}Edit Note{% endblock %}
+
+{% block content %}
+
+{% set title = "Edit Note" %}
+{% set subtitle = "Update your study material details" %}
+{% set breadcrumbs = [{"label": "Study Notes", "url": url_for('note.notes')}, {"label": "Edit Note"}] %}
+{% include "includes/page_header.html" %}
+
+<div class="form-card">
+    <form method="POST">
+
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input
+                type="text"
+                name="title"
+                class="form-control"
+                value="{{ note.title }}"
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Subject</label>
+            <input
+                type="text"
+                name="subject"
+                class="form-control"
+                value="{{ note.subject }}"
+                required>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Department</label>
+                <input
+                    type="text"
+                    name="department"
+                    class="form-control"
+                    value="{{ note.department }}"
+                    required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Year</label>
+                <input
+                    type="text"
+                    name="year"
+                    class="form-control"
+                    value="{{ note.year }}"
+                    required>
+            </div>
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-check-circle me-1"></i> Update Note
+            </button>
+
+            <a href="{{ url_for('note.notes') }}" class="btn btn-outline-secondary">
+                Cancel
+            </a>
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}

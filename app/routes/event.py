@@ -9,19 +9,33 @@ event = Blueprint("event", __name__)
 # ----------------------------
 # View All Events
 # ----------------------------
+from sqlalchemy import or_
 @event.route("/events")
 @login_required
 def events():
 
-    events = Event.query.order_by(
+    search = request.args.get("search", "")
+
+    query = Event.query
+
+    if search:
+        query = query.filter(
+            or_(
+                Event.title.ilike(f"%{search}%"),
+                Event.venue.ilike(f"%{search}%"),
+                Event.organizer.ilike(f"%{search}%")
+            )
+        )
+
+    events = query.order_by(
         Event.created_at.desc()
     ).all()
 
     return render_template(
         "dashboard/events/events.html",
-        events=events
+        events=events,
+        search=search
     )
-
 
 # ----------------------------
 # Add Event

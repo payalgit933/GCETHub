@@ -1,3 +1,4 @@
+
 {% extends "dashboard/dashboard_base.html" %}
 
 {% block title %}Communities{% endblock %}
@@ -6,41 +7,104 @@
 
 {% set title = "Communities" %}
 {% set subtitle = "Discover and join student communities" %}
+
 {% if current_user.role == "admin" %}
 {% set action_url = url_for('community.add_community') %}
 {% set action_text = "Add Community" %}
 {% set action_icon = "bi-plus-lg" %}
 {% endif %}
+
 {% include "includes/page_header.html" %}
+
+<!-- Search Form -->
+<form method="GET" class="mb-3">
+    <div class="input-group">
+        <input
+            type="text"
+            name="search"
+            class="form-control"
+            placeholder="Search community..."
+            value="{{ search }}">
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-search me-1"></i> Search
+        </button>
+    </div>
+</form>
 
 {% for community in communities %}
 
 <div class="list-item-card">
     <div class="d-flex justify-content-between align-items-start gap-3">
+
         <div>
             <h5 class="item-title">{{ community.name }}</h5>
-            <p class="mb-2 text-secondary">{{ community.description }}</p>
+
+            <p class="mb-2 text-secondary">
+                {{ community.description }}
+            </p>
+
             <span class="item-meta">
-                <i class="bi bi-tag me-1"></i>{{ community.category }}
+                <i class="bi bi-tag me-1"></i>
+                {{ community.category }}
             </span>
         </div>
-        <span class="item-badge">{{ community.category }}</span>
+
+        <div class="text-end">
+
+            <span class="item-badge d-block mb-2">
+                {{ community.category }}
+            </span>
+
+            {% if current_user.role == "admin" %}
+            <div class="d-flex gap-2 justify-content-end">
+
+                <a href="{{ url_for('community.edit_community', id=community.id) }}"
+                   class="btn btn-warning btn-sm">
+                    Edit
+                </a>
+
+                <a href="{{ url_for('community.delete_community', id=community.id) }}"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Delete this community?')">
+                    Delete
+                </a>
+
+            </div>
+            {% endif %}
+
+        </div>
+
     </div>
 </div>
 
 {% else %}
 
 <div class="empty-state">
+
     <i class="bi bi-people d-block"></i>
-    <h5>No communities yet</h5>
-    <p>Communities will appear here once they are created.</p>
+
+    {% if search %}
+        <h5>No matching communities found</h5>
+        <p>
+            No communities match "<strong>{{ search }}</strong>".
+        </p>
+    {% else %}
+        <h5>No communities yet</h5>
+        <p>
+            Communities will appear here once they are created.
+        </p>
+    {% endif %}
+
     {% if current_user.role == "admin" %}
     <a href="{{ url_for('community.add_community') }}" class="btn btn-primary">
-        <i class="bi bi-plus-lg me-1"></i> Create Community
+        <i class="bi bi-plus-lg me-1"></i>
+        Create Community
     </a>
     {% endif %}
+
 </div>
 
 {% endfor %}
 
 {% endblock %}
+```

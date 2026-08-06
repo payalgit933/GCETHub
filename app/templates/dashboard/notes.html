@@ -1,3 +1,4 @@
+
 {% extends "dashboard/dashboard_base.html" %}
 
 {% block title %}Study Notes{% endblock %}
@@ -9,39 +10,111 @@
 {% set action_url = url_for('note.upload_note') %}
 {% set action_text = "Upload Notes" %}
 {% set action_icon = "bi-cloud-upload" %}
+
 {% include "includes/page_header.html" %}
+
+<!-- Search Form -->
+<form method="GET" class="mb-3">
+    <div class="input-group">
+        <input
+            type="text"
+            name="search"
+            class="form-control"
+            placeholder="Search notes..."
+            value="{{ search }}">
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-search me-1"></i> Search
+        </button>
+    </div>
+</form>
 
 {% for note in notes %}
 
 <div class="list-item-card">
     <div class="d-flex justify-content-between align-items-start gap-3 flex-wrap">
+
         <div>
             <h5 class="item-title">{{ note.title }}</h5>
+
             <div class="d-flex flex-wrap gap-3 mb-2">
-                <span class="item-meta"><i class="bi bi-book me-1"></i>{{ note.subject }}</span>
-                <span class="item-meta"><i class="bi bi-building me-1"></i>{{ note.department }}</span>
-                <span class="item-meta"><i class="bi bi-calendar me-1"></i>Year {{ note.year }}</span>
+                <span class="item-meta">
+                    <i class="bi bi-book me-1"></i>
+                    {{ note.subject }}
+                </span>
+
+                <span class="item-meta">
+                    <i class="bi bi-building me-1"></i>
+                    {{ note.department }}
+                </span>
+
+                <span class="item-meta">
+                    <i class="bi bi-calendar me-1"></i>
+                    Year {{ note.year }}
+                </span>
             </div>
         </div>
-        <a href="{{ url_for('static', filename='uploads/notes/' + note.file_name) }}"
-           target="_blank"
-           class="btn btn-outline-primary btn-sm">
-            <i class="bi bi-download me-1"></i> Download PDF
-        </a>
+
+        <div class="d-flex gap-2 flex-wrap">
+
+            <a href="{{ url_for('static', filename='uploads/notes/' + note.file_name) }}"
+               target="_blank"
+               class="btn btn-info btn-sm">
+                <i class="bi bi-eye me-1"></i> View PDF
+            </a>
+
+            <a href="{{ url_for('static', filename='uploads/notes/' + note.file_name) }}"
+               target="_blank"
+               class="btn btn-outline-primary btn-sm"
+               download>
+                <i class="bi bi-download me-1"></i> Download PDF
+            </a>
+
+            {% if current_user.role == "admin" or current_user.id == note.uploaded_by %}
+
+            <a href="{{ url_for('note.edit_note', id=note.id) }}"
+               class="btn btn-warning btn-sm">
+                Edit
+            </a>
+
+            <a href="{{ url_for('note.delete_note', id=note.id) }}"
+               class="btn btn-danger btn-sm"
+               onclick="return confirm('Delete this note?')">
+                Delete
+            </a>
+
+            {% endif %}
+
+        </div>
+
     </div>
 </div>
 
 {% else %}
 
 <div class="empty-state">
+
     <i class="bi bi-journal-x d-block"></i>
-    <h5>No notes uploaded yet</h5>
-    <p>Be the first to share study materials with your peers.</p>
+
+    {% if search %}
+        <h5>No matching notes found</h5>
+        <p>
+            No notes match "<strong>{{ search }}</strong>".
+        </p>
+    {% else %}
+        <h5>No notes uploaded yet</h5>
+        <p>
+            Be the first to share study materials with your peers.
+        </p>
+    {% endif %}
+
     <a href="{{ url_for('note.upload_note') }}" class="btn btn-primary">
-        <i class="bi bi-cloud-upload me-1"></i> Upload Notes
+        <i class="bi bi-cloud-upload me-1"></i>
+        Upload Notes
     </a>
+
 </div>
 
 {% endfor %}
 
 {% endblock %}
+```
