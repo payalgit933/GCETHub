@@ -1,19 +1,17 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, abort
 from flask_login import login_required, current_user
+from sqlalchemy import or_
+
 from app.extensions import db
 from app.models.placement import Placement
-from flask import abort
 from app.utils.notifications import create_notification
 
 placement = Blueprint("placement", __name__)
 
 
-from sqlalchemy import or_
-
 @placement.route("/placements")
 @login_required
 def placements():
-
     search = request.args.get("search", "")
 
     query = Placement.query
@@ -33,19 +31,18 @@ def placements():
     return render_template(
         "dashboard/placements.html",
         placements=placements,
-        search=search
+        search=search,
+        result_count=len(placements),
     )
 
 
 @placement.route("/placement/add", methods=["GET", "POST"])
 @login_required
 def add_placement():
-
     if current_user.role != "admin":
         abort(403)
 
     if request.method == "POST":
-
         company = request.form.get("company")
         role = request.form.get("role")
         package = request.form.get("package")
@@ -76,17 +73,18 @@ def add_placement():
 
         return redirect(url_for("placement.placements"))
 
+    return render_template("dashboard/add_placement.html")
+
+
 @placement.route("/placement/edit/<int:id>", methods=["GET", "POST"])
 @login_required
 def edit_placement(id):
-
     if current_user.role != "admin":
         abort(403)
 
     placement = Placement.query.get_or_404(id)
 
     if request.method == "POST":
-
         placement.company = request.form.get("company")
         placement.role = request.form.get("role")
         placement.location = request.form.get("location")
@@ -109,7 +107,6 @@ def edit_placement(id):
 @placement.route("/placement/delete/<int:id>")
 @login_required
 def delete_placement(id):
-
     if current_user.role != "admin":
         abort(403)
 
@@ -121,6 +118,3 @@ def delete_placement(id):
     flash("Placement deleted successfully!", "success")
 
     return redirect(url_for("placement.placements"))
-
-    
-    return render_template("dashboard/add_placement.html")

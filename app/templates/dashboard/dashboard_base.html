@@ -47,6 +47,23 @@
                     overlay.classList.remove('show');
                 });
             }
+
+            document.querySelectorAll('[data-auto-dismiss]').forEach(function (alert) {
+                var delay = parseInt(alert.getAttribute('data-auto-dismiss'), 10);
+                if (delay > 0) {
+                    setTimeout(function () {
+                        var instance = bootstrap.Alert.getOrCreateInstance(alert);
+                        instance.close();
+                    }, delay);
+                }
+            });
+
+            var currentPath = window.location.pathname;
+            document.querySelectorAll('.sidebar-nav .nav-link').forEach(function (link) {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
         })();
     </script>
 

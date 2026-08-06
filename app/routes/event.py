@@ -35,7 +35,8 @@ def events():
     return render_template(
         "dashboard/events/events.html",
         events=events,
-        search=search
+        search=search,
+        result_count=len(events),
     )
 
 

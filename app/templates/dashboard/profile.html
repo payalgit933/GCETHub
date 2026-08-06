@@ -4,82 +4,142 @@
 
 {% block content %}
 
-<div class="card shadow p-4">
+{% set title = "My Profile" %}
+{% set subtitle = "Manage your account and personal information" %}
+{% include "includes/page_header.html" %}
 
-    <div class="text-center">
+<div class="row g-4">
 
-        <img src="{{ url_for('static', filename='uploads/profile_pics/' + user.profile_pic) }}"
-             width="140"
-             height="140"
-             class="rounded-circle mb-3">
+    <div class="col-lg-4">
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="profile-header-glow"></div>
+            </div>
 
-        <form
-            method="POST"
-            action="{{ url_for('profile.upload_profile_picture') }}"
-            enctype="multipart/form-data"
-            class="mt-3">
+            <div class="profile-body">
+                <div class="profile-avatar-wrapper">
+                    <img src="{{ url_for('static', filename='uploads/profile_pics/' + user.profile_pic) }}"
+                         alt="{{ user.name }}"
+                         class="profile-avatar">
 
-            <input
-                type="file"
-                name="profile_pic"
-                class="form-control mb-3"
-                accept=".png,.jpg,.jpeg"
-                required>
+                    <label for="profilePicInput" class="profile-avatar-overlay" title="Change photo">
+                        <i class="bi bi-camera-fill"></i>
+                    </label>
+                </div>
 
-            <button class="btn btn-success">
-                Upload Picture
-            </button>
+                <form method="POST"
+                      action="{{ url_for('profile.upload_profile_picture') }}"
+                      enctype="multipart/form-data"
+                      id="profileUploadForm"
+                      class="d-none">
+                    <input type="file"
+                           id="profilePicInput"
+                           name="profile_pic"
+                           accept=".png,.jpg,.jpeg"
+                           onchange="this.form.submit()">
+                </form>
 
-        </form>
+                <div class="profile-info">
+                    <h3>{{ user.name }}</h3>
+                    <span class="profile-role-badge profile-role-badge-lg">{{ user.role|title }}</span>
+                    <p class="profile-email">{{ user.email }}</p>
+                </div>
 
-        <h3>{{ user.name }}</h3>
+                <div class="profile-quick-actions">
+                    <a href="{{ url_for('profile.edit_profile') }}" class="profile-action-btn">
+                        <i class="bi bi-pencil-square"></i>
+                        Edit Profile
+                    </a>
+                    <a href="{{ url_for('profile.change_password') }}" class="profile-action-btn profile-action-btn-alt">
+                        <i class="bi bi-shield-lock"></i>
+                        Password
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <span class="badge bg-primary">{{ user.role.title() }}</span>
+    <div class="col-lg-8">
+
+        <div class="content-card mb-4">
+            <div class="card-header-custom">
+                <h5 class="mb-0">
+                    <i class="bi bi-person-vcard me-2 text-primary"></i>
+                    Personal Information
+                </h5>
+            </div>
+            <div class="card-body-custom profile-details">
+
+                <div class="detail-row">
+                    <div class="detail-label">
+                        <i class="bi bi-envelope"></i> Email
+                    </div>
+                    <div class="detail-value">{{ user.email }}</div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-label">
+                        <i class="bi bi-hash"></i> Enrollment
+                    </div>
+                    <div class="detail-value">{{ user.enrollment or "—" }}</div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-label">
+                        <i class="bi bi-building"></i> Department
+                    </div>
+                    <div class="detail-value">{{ user.department or "—" }}</div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-label">
+                        <i class="bi bi-calendar3"></i> Year
+                    </div>
+                    <div class="detail-value">{{ user.year or "—" }}</div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-label">
+                        <i class="bi bi-grid"></i> Section
+                    </div>
+                    <div class="detail-value">{{ user.section or "—" }}</div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-sm-4">
+                <div class="profile-stat-tile">
+                    <div class="profile-stat-icon blue">
+                        <i class="bi bi-mortarboard"></i>
+                    </div>
+                    <div class="profile-stat-label">Role</div>
+                    <div class="profile-stat-value">{{ user.role|title }}</div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="profile-stat-tile">
+                    <div class="profile-stat-icon purple">
+                        <i class="bi bi-building"></i>
+                    </div>
+                    <div class="profile-stat-label">Department</div>
+                    <div class="profile-stat-value">{{ user.department or "N/A" }}</div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="profile-stat-tile">
+                    <div class="profile-stat-icon green">
+                        <i class="bi bi-people"></i>
+                    </div>
+                    <div class="profile-stat-label">Section</div>
+                    <div class="profile-stat-value">{{ user.section or "N/A" }}</div>
+                </div>
+            </div>
+        </div>
 
     </div>
 
-    <hr>
-
-    <table class="table">
-
-        <tr>
-            <th>Email</th>
-            <td>{{ user.email }}</td>
-        </tr>
-
-        <tr>
-            <th>Enrollment</th>
-            <td>{{ user.enrollment }}</td>
-        </tr>
-
-        <tr>
-            <th>Department</th>
-            <td>{{ user.department }}</td>
-        </tr>
-
-        <tr>
-            <th>Year</th>
-            <td>{{ user.year }}</td>
-        </tr>
-
-        <tr>
-            <th>Section</th>
-            <td>{{ user.section }}</td>
-        </tr>
-
-    </table>
-
 </div>
-<div class="mt-3 text-center">
-    <a href="{{ url_for('profile.edit_profile') }}"
-    class="btn btn-primary">
-        Edit Profile
-    </a>
-    <a href="{{ url_for('profile.change_password') }}"
-    class="btn btn-warning mt-2">
-        Change Password
-    </a>
-</div>
-
 
 {% endblock %}

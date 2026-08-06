@@ -4,7 +4,9 @@
 
 {% block content %}
 
-<h2>Notifications</h2>
+{% set title = "Notifications" %}
+{% set subtitle = "Stay updated with campus activity alerts" %}
+{% include "includes/page_header.html" %}
 
 {% if notifications %}
 
@@ -12,16 +14,15 @@
 
 {% for n in notifications %}
 
-<li class="list-group-item">
-
-<strong>{{ n.type.title() }}</strong><br>
-
-{{ n.message }}
-
-<small class="text-muted float-end">
-{{ n.created_at.strftime("%d %b %Y %I:%M %p") }}
-</small>
-
+<li class="list-group-item d-flex justify-content-between align-items-start gap-3">
+    <div>
+        <span class="badge badge-category badge-category-primary mb-2">{{ n.type.title() }}</span>
+        <div class="fw-semibold">{{ n.title }}</div>
+        <p class="mb-0 text-secondary small">{{ n.message }}</p>
+    </div>
+    <small class="text-muted text-nowrap">
+        {{ n.created_at.strftime("%d %b %Y %I:%M %p") }}
+    </small>
 </li>
 
 {% endfor %}
@@ -30,7 +31,10 @@
 
 {% else %}
 
-<p>No notifications yet.</p>
+{% set icon = "bi-bell" %}
+{% set heading = "No notifications yet" %}
+{% set message = "You'll see alerts here when new announcements, notes, or placements are added." %}
+{% include "includes/empty_state.html" %}
 
 {% endif %}
 

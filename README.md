@@ -1,311 +1,236 @@
-# 🎓 GCETHub - Campus Collaboration & Student Platform
+# GCETHub - Campus Collaboration & Student Platform
 
 ![GCETHub Banner](app/static/images/banner.png)
 
-## 🚀 Overview
+## Project Overview
 
-**GCETHub** is a modern campus collaboration platform designed to bring students, faculty, and campus communities together in one place.
+**GCETHub** is a campus collaboration platform built with Flask and MySQL. It centralizes announcements, communities, study notes, placements, events, and notifications in one place for students and administrators.
 
-The platform solves the problem of scattered information across multiple WhatsApp groups and disconnected channels by providing a centralized space for:
-
-* 📢 Campus announcements
-* 👥 Student communities
-* 📚 Notes and academic resources
-* 💼 Placement opportunities
-* 🎉 Events and activities
-* 👤 Student profiles and networking
-
-GCETHub aims to create a digital campus ecosystem where students can easily access important updates, collaborate with peers, and stay connected with college activities.
+Instead of scattered WhatsApp groups and disconnected channels, GCETHub gives students a single dashboard for campus updates, academic resources, and career opportunities.
 
 ---
 
-# ✨ Key Features
+## Features
 
-## 📢 Announcements Module
+### Authentication & Roles
+- User registration and secure login
+- Role-based access control (Admin / Student)
+- Protected routes with Flask-Login
 
-* Centralized college announcements
-* Important notices and updates
-* Organized information instead of multiple messaging groups
+### Dashboard
+- Student dashboard with statistics, quick links, and activity widgets
+- Admin dashboard with platform metrics and latest content previews
+- Uploads-this-month counter, upcoming events, and latest activity feed
 
-## 👥 Community Module
+### Announcements
+- Create, read, update, and delete (admin)
+- Search with result counts and clear search
+- Students can view all announcements
+- **Formatting preserved** — line breaks and spacing from the editor are kept when announcements are displayed
 
-* Student communities based on interests and departments
-* Peer collaboration and discussions
-* Campus networking
+### UI / UX
+- **Glassmorphism design** — frosted-glass surfaces with backdrop blur across dashboard, auth, and landing pages
+- **Glossy card effects** — subtle highlights, gradients, and depth on stat cards, list items, and forms
+- **Modern sidebar & navbar** — sticky glass navbar, collapsible sidebar on mobile, active route highlighting
+- **Responsive layout** — optimized for desktop and mobile viewports
 
-## 📚 Notes & Resources
+### Communities
+- Browse and search student communities
+- Admin CRUD with category badges
 
-* Upload and access study materials
-* Share academic resources
-* Easy knowledge sharing among students
+### Study Notes
+- Upload, view PDF, download, edit, and delete
+- Students can manage only their own notes
+- Admins can manage all notes
 
-## 💼 Placement Module
+### Placements
+- Job and internship listings with apply links
+- Search by company or role
+- Admin CRUD
 
-* Placement updates
-* Internship opportunities
-* Career-related information
+### Events
+- Campus event listings with date, time, and venue
+- Responsive table with sticky headers
+- Admin CRUD
 
-## 👤 Profile Module
+### Notifications
+- Broadcast alerts when new content is added
+- Unread notification badge in navbar
 
-* Student profile management
-* Profile picture support
-* Personal academic information display
-
-Profile includes:
-
-* Name
-* Email
-* Enrollment number
-* Department
-* Year
-* Section
-* Role
-
-## 🔐 Authentication System
-
-* User registration
-* Secure login
-* Role-based access
-* Protected routes
-
----
-
-# 🖥️ Screenshots
-
-## Landing Page
-
-Modern campus-focused landing page introducing GCETHub's vision.
-
-![Landing Page](app/static/images/banner.png)
-
-## Dashboard
-
-Student dashboard providing quick access to campus features.
-
-![Dashboard](app/static/images/dashboard.png)
-
-## Profile Module
-
-Student profile management interface.
-
-![Profile](app/static/images/profile.png)
+### Profile
+- View and edit profile details
+- Profile picture upload
+- Change password
 
 ---
 
-# 🛠️ Tech Stack
+## Technologies
 
-## Backend
-
-* Python
-* Flask
-* Flask-SQLAlchemy
-* Flask-Login
-
-## Frontend
-
-* HTML5
-* CSS3
-* Bootstrap
-* JavaScript
-* Jinja2 Templates
-
-## Database
-
-* SQLite / SQLAlchemy
-
-## Tools
-
-* VS Code
-* Git & GitHub
-* Flask Development Server
+| Layer | Stack |
+|-------|-------|
+| Backend | Python, Flask, Flask-SQLAlchemy, Flask-Login, Flask-Migrate |
+| Frontend | HTML5, CSS3 (Glassmorphism), Bootstrap 5, Bootstrap Icons, Jinja2 |
+| Database | MySQL (via PyMySQL) |
+| Tools | Git, VS Code |
 
 ---
 
-# 📂 Project Structure
+## Installation
 
-```
-GCETHub/
-
-│
-├── app/
-│   │
-│   ├── routes/
-│   │   ├── auth.py
-│   │   ├── profile.py
-│   │   ├── dashboard.py
-│   │   └── ...
-│   │
-│   ├── models/
-│   │   └── user.py
-│   │
-│   ├── templates/
-│   │   │
-│   │   ├── dashboard/
-│   │   │   ├── dashboard.html
-│   │   │   ├── dashboard_base.html
-│   │   │   └── profile.html
-│   │   │
-│   │   └── includes/
-│   │       ├── navbar.html
-│   │       └── sidebar.html
-│   │
-│   ├── static/
-│   │   │
-│   │   ├── images/
-│   │   │
-│   │   └── uploads/
-│   │       └── profile_pics/
-│   │
-│   └── __init__.py
-│
-├── run.py
-├── requirements.txt
-└── README.md
-
-```
-
----
-
-# ⚙️ Installation & Setup
-
-## 1. Clone Repository
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/yourusername/GCETHub.git
-```
-
-Move into project directory:
-
-```bash
 cd GCETHub
 ```
 
----
-
-## 2. Create Virtual Environment
+### 2. Create a virtual environment
 
 ```bash
 python -m venv venv
 ```
 
-Activate environment:
-
-### Windows
+**Windows**
 
 ```bash
 venv\Scripts\activate
 ```
 
----
+**Linux / macOS**
 
-## 3. Install Dependencies
+```bash
+source venv/bin/activate
+```
+
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
+### 4. Configure the database
 
-## 4. Run Application
+Update `config.py` with your MySQL credentials:
+
+```python
+SQLALCHEMY_DATABASE_URI = "mysql+pymysql://user:password@localhost/gcethub"
+SECRET_KEY = "your-secret-key"
+```
+
+Create the database:
+
+```sql
+CREATE DATABASE gcethub;
+```
+
+Run migrations:
+
+```bash
+flask db upgrade
+```
+
+### 5. Run the application
 
 ```bash
 python run.py
 ```
 
-Application will start at:
+Open [http://127.0.0.1:5000/](http://127.0.0.1:5000/) in your browser.
+
+### Writing Announcements
+
+When creating or editing an announcement, use line breaks and spacing as you would in a document. The platform preserves your formatting when displaying content to students — paragraphs, bullet lists, and multi-line notices all render exactly as written.
+
+---
+
+## Folder Structure
 
 ```
-http://127.0.0.1:5000/
+GCETHub/
+├── app/
+│   ├── __init__.py              # Application factory
+│   ├── extensions.py            # db, login_manager, migrate
+│   ├── models/                  # SQLAlchemy models
+│   │   ├── user.py
+│   │   ├── announcement.py
+│   │   ├── community.py
+│   │   ├── note.py
+│   │   ├── placement.py
+│   │   ├── event.py
+│   │   └── notification.py
+│   ├── routes/                  # Blueprint route handlers
+│   │   ├── auth.py
+│   │   ├── dashboard.py
+│   │   ├── admin.py
+│   │   ├── announcement.py
+│   │   ├── community.py
+│   │   ├── note.py
+│   │   ├── placement.py
+│   │   ├── event.py
+│   │   ├── profile.py
+│   │   └── notification.py
+│   ├── templates/
+│   │   ├── base.html
+│   │   ├── index.html
+│   │   ├── auth/
+│   │   ├── dashboard/
+│   │   └── includes/            # Reusable partials (flash, search, empty state)
+│   ├── static/
+│   │   ├── css/
+│   │   ├── images/
+│   │   └── uploads/
+│   └── utils/
+│       └── notifications.py
+├── migrations/                  # Alembic migration files
+├── config.py
+├── run.py
+├── requirements.txt
+└── README.md
 ```
 
 ---
 
-# 🔐 Environment Configuration
+## Screenshots
 
-Create a `.env` file:
+### Landing Page
+![Landing Page](app/static/images/banner.png)
 
-```
-SECRET_KEY=your_secret_key
-DATABASE_URL=your_database_url
-```
+### Student Dashboard
+![Dashboard](app/static/images/dashboard.png)
 
----
+### Profile
+![Profile](app/static/images/profile.png)
 
-# 🧩 Current Development Status
+### Admin Dashboard
+<!-- Add screenshot: app/static/images/admin_dashboard.png -->
 
-Completed:
+### Announcements
+<!-- Add screenshot: app/static/images/announcements.png -->
 
-✅ Landing page design
-✅ Authentication system
-✅ Dashboard layout
-✅ Profile image handling
-✅ Student profile module
-✅ Database integration
-
-In Progress:
-
-🚧 Edit Profile
-🚧 Upload Profile Picture
-🚧 Change Password
-🚧 Announcement Module
-🚧 Community Module
-🚧 Notes Sharing Module
-🚧 Placement Module
+### Events
+<!-- Add screenshot: app/static/images/events.png -->
 
 ---
 
-# 🔮 Future Enhancements
+## Future Scope
 
-## 🤖 AI-Based Campus Assistant
-
-* Smart campus search
-* Personalized recommendations
-* Academic assistance
-
-## 📱 Mobile Application
-
-* Android/iOS application
-* Push notifications
-* Real-time updates
-
-## 🔔 Notification System
-
-* Instant announcement alerts
-* Event reminders
-
-## 💬 Real-Time Communication
-
-* Student discussions
-* Community chat
-* Collaboration spaces
+- **AI Campus Assistant** — Smart search and personalized recommendations
+- **Mobile Application** — Android/iOS app with push notifications
+- **Real-time Chat** — Community discussions and direct messaging
+- **Advanced Analytics** — Usage trends and engagement metrics for admins
+- **Email Notifications** — Alerts for announcements, events, and placements
+- **Global Search** — Search across all modules from a single input
+- **Event Registration** — In-app RSVP and attendance tracking
+- **API Layer** — REST API for third-party integrations
 
 ---
 
-# 🎯 Project Vision
+## Developer
 
-GCETHub focuses on building a connected digital campus where students can learn, collaborate, and grow together.
-
-Instead of searching through multiple platforms, students get one unified platform for everything related to campus life.
+**Payal Kumari** — MCA Student | Full Stack Developer
 
 ---
 
-# 👩‍💻 Developer
-
-**Payal Kumari**
-
-MCA Student | Full Stack Developer
-
-Skills:
-
-* Python
-* Flask
-* Django
-* React
-* JavaScript
-* SQL
-
----
-
-# 📄 License
+## License
 
 This project is developed for educational and academic purposes.

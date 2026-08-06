@@ -35,7 +35,8 @@ def notes():
     return render_template(
         "dashboard/notes.html",
         notes=notes,
-        search=search
+        search=search,
+        result_count=len(notes),
     )
 
 @note.route("/notes/upload", methods=["GET", "POST"])

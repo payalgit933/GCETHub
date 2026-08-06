@@ -1,7 +1,6 @@
 from flask import Flask
 from config import Config
 from app.extensions import db, login_manager, migrate
-from app.models.notification import Notification
 
 
 def create_app():
@@ -14,12 +13,6 @@ def create_app():
 
     login_manager.login_view = "auth.login"
 
-
-    @login_manager.user_loader
-    def load_user(user_id):
-        return User.query.get(int(user_id))
-
-    # Import Models
     from app.models.user import User
     from app.models.announcement import Announcement
     from app.models.community import Community
@@ -28,7 +21,10 @@ def create_app():
     from app.models.notification import Notification
     from app.models.event import Event
 
-    # Register Blueprints
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
+
     from app.routes.home import home
     app.register_blueprint(home)
 
@@ -55,30 +51,25 @@ def create_app():
 
     from app.routes.admin import admin
     app.register_blueprint(admin)
-    
+
     from app.routes.notification import notification
     app.register_blueprint(notification)
-    
+
     from app.routes.event import event
     app.register_blueprint(event)
-    
+
     @app.context_processor
     def notification_count():
-
         from flask_login import current_user
-        from app.models.notification import Notification
 
         if current_user.is_authenticated:
-
             unread = Notification.query.filter_by(
                 user_id=current_user.id,
                 is_read=False
             ).count()
-
         else:
             unread = 0
 
-        return dict(unread_notifications=unread)    
-        
-    return app
+        return dict(unread_notifications=unread)
 
+    return app

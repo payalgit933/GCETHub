@@ -27,19 +27,21 @@
 
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-
     {% for category, message in messages %}
-
-    <div class="alert alert-{{ category }} alert-dismissible fade show">
-
-    {{ message }}
-
-    <button class="btn-close" data-bs-dismiss="alert"></button>
-
+    {% set icon_map = {
+        'success': 'bi-check-circle-fill',
+        'danger': 'bi-exclamation-triangle-fill',
+        'warning': 'bi-exclamation-circle-fill',
+        'info': 'bi-info-circle-fill'
+    } %}
+    <div class="alert alert-{{ category }} alert-dismissible fade show d-flex align-items-center flash-alert"
+         role="alert"
+         {% if category == 'success' %}data-auto-dismiss="3000"{% endif %}>
+        <i class="bi {{ icon_map.get(category, 'bi-info-circle-fill') }} me-2 flex-shrink-0"></i>
+        <div class="flex-grow-1">{{ message }}</div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-
     {% endfor %}
-
     {% endif %}
     {% endwith %}
 
@@ -49,6 +51,17 @@
 {% endblock %}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.querySelectorAll('[data-auto-dismiss]').forEach(function (alert) {
+        var delay = parseInt(alert.getAttribute('data-auto-dismiss'), 10);
+        if (delay > 0) {
+            setTimeout(function () {
+                var instance = bootstrap.Alert.getOrCreateInstance(alert);
+                instance.close();
+            }, delay);
+        }
+    });
+</script>
 
 </body>
 </html>

@@ -1,87 +1,149 @@
-<nav class="navbar navbar-light bg-white shadow-sm">
+<nav class="dashboard-navbar navbar navbar-expand-lg">
 
-    <div class="container-fluid">
+    <div class="container-fluid d-flex align-items-center">
 
-        <span class="navbar-brand fw-bold">
+        <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Toggle sidebar">
+            <i class="bi bi-list"></i>
+        </button>
 
-            Welcome,
-            {{ current_user.name }}
-
+        <span class="navbar-brand-text">
+            Welcome, <strong>{{ current_user.name }}</strong>
         </span>
 
-        <div>
+        <div class="ms-auto d-flex align-items-center gap-2">
 
-            <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" style="width:350px;">
+            <div class="dropdown">
+                <a href="{{ url_for('notification.notifications') }}"
+                   class="nav-icon-btn position-relative"
+                   data-bs-toggle="dropdown"
+                   aria-expanded="false">
+                    <i class="bi bi-bell"></i>
+                    {% if unread_notifications > 0 %}
+                    <span class="notification-dot"></span>
+                    {% endif %}
+                </a>
 
-                <li class="dropdown-header fw-bold">
-                    Notifications
-                </li>
+                <ul class="dropdown-menu dropdown-menu-end mt-2" style="width:350px;">
 
-                <li><hr class="dropdown-divider"></li>
+                    <li class="dropdown-header fw-bold">
+                        Notifications
+                    </li>
 
-                {% if navbar_notifications %}
+                    <li><hr class="dropdown-divider"></li>
 
-                    {% for n in navbar_notifications %}
+                    {% if navbar_notifications %}
+
+                        {% for n in navbar_notifications %}
+
+                        <li>
+                            <a class="dropdown-item py-2"
+                               href="{{ url_for('notification.notifications') }}">
+                                <strong>{{ n.title }}</strong><br>
+                                <small class="text-muted">{{ n.message }}</small>
+                            </a>
+                        </li>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <li>
+                            <span class="dropdown-item-text text-muted">
+                                No notifications yet.
+                            </span>
+                        </li>
+
+                    {% endif %}
+
+                    <li><hr class="dropdown-divider"></li>
 
                     <li>
-
-                        <a class="dropdown-item py-2"
-                        href="{{ url_for('notification.notifications') }}">
-
-                            <strong>{{ n.title }}</strong><br>
-
-                            <small class="text-muted">
-                                {{ n.message }}
-                            </small>
-
+                        <a class="dropdown-item text-center fw-semibold"
+                           href="{{ url_for('notification.notifications') }}">
+                            View All Notifications
                         </a>
-
                     </li>
 
-                    {% endfor %}
+                </ul>
+            </div>
 
-                {% else %}
+            <div class="dropdown profile-dropdown">
+                <button type="button"
+                        class="user-menu-toggle dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        aria-label="Profile menu">
+                    <img src="{{ url_for('static', filename='uploads/profile_pics/' + current_user.profile_pic) }}"
+                         alt="Profile">
+                    <div class="user-info">
+                        <div class="user-name">{{ current_user.name }}</div>
+                        <div class="user-role">{{ current_user.role }}</div>
+                    </div>
+                    <i class="bi bi-chevron-down profile-chevron"></i>
+                </button>
+
+                <ul class="dropdown-menu dropdown-menu-end profile-dropdown-menu">
+
+                    <li class="profile-dropdown-header">
+                        <img src="{{ url_for('static', filename='uploads/profile_pics/' + current_user.profile_pic) }}"
+                             alt="Profile"
+                             class="profile-dropdown-avatar">
+                        <div class="profile-dropdown-info">
+                            <div class="profile-dropdown-name">{{ current_user.name }}</div>
+                            <div class="profile-dropdown-email">{{ current_user.email }}</div>
+                            <span class="profile-role-badge">{{ current_user.role|title }}</span>
+                        </div>
+                    </li>
+
+                    <li><hr class="dropdown-divider"></li>
 
                     <li>
-
-                        <span class="dropdown-item-text text-muted">
-
-                            No notifications yet.
-
-                        </span>
-
+                        <a class="dropdown-item profile-menu-item"
+                           href="{{ url_for('profile.my_profile') }}">
+                            <i class="bi bi-person-circle"></i>
+                            <span>My Profile</span>
+                        </a>
                     </li>
 
-                {% endif %}
+                    <li>
+                        <a class="dropdown-item profile-menu-item"
+                           href="{{ url_for('profile.edit_profile') }}">
+                            <i class="bi bi-pencil-square"></i>
+                            <span>Edit Profile</span>
+                        </a>
+                    </li>
 
-                <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <a class="dropdown-item profile-menu-item"
+                           href="{{ url_for('profile.change_password') }}">
+                            <i class="bi bi-shield-lock"></i>
+                            <span>Change Password</span>
+                        </a>
+                    </li>
 
-                <li>
+                    {% if current_user.role == "admin" %}
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <a class="dropdown-item profile-menu-item"
+                           href="{{ url_for('admin.admin_dashboard') }}">
+                            <i class="bi bi-speedometer2"></i>
+                            <span>Admin Dashboard</span>
+                        </a>
+                    </li>
+                    {% endif %}
 
-                    <a class="dropdown-item text-center fw-semibold"
-                    href="{{ url_for('notification.notifications') }}">
+                    <li><hr class="dropdown-divider"></li>
 
-                        View All Notifications
+                    <li>
+                        <a class="dropdown-item profile-menu-item profile-menu-logout"
+                           href="{{ url_for('auth.logout') }}">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
 
-                    </a>
-
-                </li>
-
-            </ul>
-            
-            <a href="{{ url_for('notification.notifications') }}" class="position-relative me-3">
-
-                <i class="bi bi-bell fs-5"></i>
-
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    {{ unread_notifications }}
-                </span>
-
-            </a>
-
-            <img src="{{ url_for('static', filename='uploads/profile_pics/' + current_user.profile_pic) }}"
-                 width="40"
-                 class="rounded-circle">
+                </ul>
+            </div>
 
         </div>
 

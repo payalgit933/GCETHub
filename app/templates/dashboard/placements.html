@@ -14,20 +14,9 @@
 
 {% include "includes/page_header.html" %}
 
-<!-- Search Form -->
-<form method="GET" class="mb-3">
-    <div class="input-group">
-        <input
-            type="text"
-            name="search"
-            class="form-control"
-            placeholder="Search company or role..."
-            value="{{ search }}">
-        <button type="submit" class="btn btn-primary">
-            <i class="bi bi-search me-1"></i> Search
-        </button>
-    </div>
-</form>
+{% with placeholder="Search company or role...", search=search, clear_url=url_for('placement.placements'), result_count=result_count %}
+{% include "includes/search_form.html" %}
+{% endwith %}
 
 {% if placements %}
 
@@ -40,48 +29,36 @@
 
             <div class="card-header-custom d-flex justify-content-between align-items-center">
                 <h5>{{ placement.company }}</h5>
-                <span class="item-badge">{{ placement.role }}</span>
+                <span class="badge badge-category badge-category-success">{{ placement.role }}</span>
             </div>
 
             <div class="card-body-custom">
 
                 <div class="row g-2 mb-3">
-
                     <div class="col-6">
                         <div class="detail-label text-muted small">Package</div>
                         <div class="fw-semibold">{{ placement.package }}</div>
                     </div>
-
                     <div class="col-6">
                         <div class="detail-label text-muted small">Location</div>
                         <div class="fw-semibold">{{ placement.location }}</div>
                     </div>
-
                     <div class="col-6">
                         <div class="detail-label text-muted small">Eligibility</div>
                         <div class="fw-semibold">{{ placement.eligibility }}</div>
                     </div>
-
                     <div class="col-6">
                         <div class="detail-label text-muted small">Deadline</div>
                         <div class="fw-semibold">{{ placement.deadline }}</div>
                     </div>
-
                 </div>
 
                 {% if current_user.role == "admin" %}
-
                 <a href="{{ url_for('placement.edit_placement', id=placement.id) }}"
-                   class="btn btn-warning btn-sm">
-                    Edit
-                </a>
-
+                   class="btn btn-warning btn-sm">Edit</a>
                 <a href="{{ url_for('placement.delete_placement', id=placement.id) }}"
                    class="btn btn-danger btn-sm"
-                   onclick="return confirm('Delete this placement?')">
-                    Delete
-                </a>
-
+                   onclick="return confirm('Delete this placement?')">Delete</a>
                 {% endif %}
 
                 <a href="{{ placement.apply_link }}"
@@ -101,25 +78,21 @@
 
 {% else %}
 
-<div class="empty-state">
-    <i class="bi bi-briefcase d-block"></i>
-
-    {% if search %}
-        <h5>No matching placements found</h5>
-        <p>No placement matches "<strong>{{ search }}</strong>".</p>
-    {% else %}
-        <h5>No placement opportunities yet</h5>
-        <p>New job and internship listings will appear here.</p>
-    {% endif %}
-
-    {% if current_user.role == "admin" %}
-    <a href="{{ url_for('placement.add_placement') }}" class="btn btn-primary">
-        <i class="bi bi-plus-lg me-1"></i> Add Placement
-    </a>
-    {% endif %}
-</div>
+{% if search %}
+    {% set heading = "No matching placements found" %}
+    {% set message = 'No placement matches "<strong>' ~ search ~ '</strong>". Try a different keyword.' %}
+{% else %}
+    {% set heading = "No placement opportunities yet" %}
+    {% set message = "New job and internship listings will appear here." %}
+{% endif %}
+{% set icon = "bi-briefcase" %}
+{% if current_user.role == "admin" %}
+    {% set action_url = url_for('placement.add_placement') %}
+    {% set action_text = "Add Placement" %}
+    {% set action_icon = "bi-plus-lg" %}
+{% endif %}
+{% include "includes/empty_state.html" %}
 
 {% endif %}
 
 {% endblock %}
-```

@@ -17,6 +17,7 @@ def my_profile():
 
 # //edit profile route
 @profile.route("/profile/edit", methods=["GET", "POST"])
+@login_required
 def edit_profile():
 
     if request.method == "POST":

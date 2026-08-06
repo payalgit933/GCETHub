@@ -1,16 +1,17 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, abort
 from flask_login import login_required, current_user
+from sqlalchemy import or_
+
 from app.extensions import db
 from app.models.community import Community
 from app.utils.notifications import create_notification
 
 community = Blueprint("community", __name__)
 
-from sqlalchemy import or_
+
 @community.route("/communities")
 @login_required
 def communities():
-
     search = request.args.get("search", "")
 
     query = Community.query
@@ -31,18 +32,18 @@ def communities():
     return render_template(
         "dashboard/communities.html",
         communities=communities,
-        search=search
+        search=search,
+        result_count=len(communities),
     )
+
 
 @community.route("/community/add", methods=["GET", "POST"])
 @login_required
 def add_community():
-
     if current_user.role != "admin":
-        return "Unauthorized", 403
+        abort(403)
 
     if request.method == "POST":
-
         name = request.form.get("name")
         description = request.form.get("description")
         category = request.form.get("category")
@@ -65,17 +66,18 @@ def add_community():
 
         return redirect(url_for("community.communities"))
 
+    return render_template("dashboard/add_community.html")
+
+
 @community.route("/community/edit/<int:id>", methods=["GET", "POST"])
 @login_required
 def edit_community(id):
-
     if current_user.role != "admin":
         abort(403)
 
     community = Community.query.get_or_404(id)
 
     if request.method == "POST":
-
         community.name = request.form.get("name")
         community.description = request.form.get("description")
         community.category = request.form.get("category")
@@ -95,7 +97,6 @@ def edit_community(id):
 @community.route("/community/delete/<int:id>")
 @login_required
 def delete_community(id):
-
     if current_user.role != "admin":
         abort(403)
 
@@ -107,5 +108,3 @@ def delete_community(id):
     flash("Community deleted successfully!", "success")
 
     return redirect(url_for("community.communities"))
-
-    return render_template("dashboard/add_community.html")

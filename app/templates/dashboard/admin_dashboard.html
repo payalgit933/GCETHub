@@ -8,7 +8,7 @@
 {% set subtitle = "Platform overview and key metrics" %}
 {% include "includes/page_header.html" %}
 
-<div class="row g-3">
+<div class="row g-3 mb-4">
 
     <div class="col-sm-6 col-xl-3">
         <div class="stat-card">
@@ -79,6 +79,36 @@
             <p class="stat-label">Placements</p>
         </div>
     </div>
+
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card">
+            <div class="stat-icon purple">
+                <i class="bi bi-calendar-event-fill"></i>
+            </div>
+            <div class="stat-value">{{ data.events }}</div>
+            <p class="stat-label">Events</p>
+        </div>
+    </div>
+
+</div>
+
+<div class="row g-3">
+
+    {% with title="Latest Announcements", icon="bi-megaphone-fill", items=latest_announcements, view_all_url=url_for('announcement.announcements') %}
+    {% include "includes/latest_widget.html" %}
+    {% endwith %}
+
+    {% with title="Latest Placements", icon="bi-briefcase-fill", items=latest_placements, view_all_url=url_for('placement.placements') %}
+    {% include "includes/latest_widget.html" %}
+    {% endwith %}
+
+    {% with title="Latest Events", icon="bi-calendar-event-fill", items=latest_events, view_all_url=url_for('event.events') %}
+    {% include "includes/latest_widget.html" %}
+    {% endwith %}
+
+    {% with title="Latest Uploaded Notes", icon="bi-journal-text", items=latest_notes, view_all_url=url_for('note.notes') %}
+    {% include "includes/latest_widget.html" %}
+    {% endwith %}
 
 </div>
 
