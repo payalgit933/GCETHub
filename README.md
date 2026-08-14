@@ -428,7 +428,7 @@ https://github.com/payalgit933/GCETHub
 
 # 📜 License
 
-This project was developed as an **MCA Mini Project** for educational and academic purposes.
+This project was developed as an **MCA Personal Project** for educational purposes.
 
 ---
 
