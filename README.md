@@ -347,81 +347,49 @@ http://127.0.0.1:5000
 
 ## Landing Page
 
-> Add screenshot
-
-```
-![Student Dashboard](ss/dashboard.png)
-```
+![Landing Page](ss/banner.png)
 
 ---
 
 ## Student Dashboard
 
-> Add screenshot
-
-```
-ss/dashboard.png
-```
+![Student Dashboard](ss/dashboard.png)
 
 ---
 
 ## Admin Dashboard
 
-> Add screenshot
-
-```
-ss/admin_dashboard.png
-```
+![Admin Dashboard](ss/admin_dashboard.png)
 
 ---
 
 ## Notes Module
 
-> Add screenshot
-
-```
-ss/notes.png
-```
+![Notes Module](ss/notes.png)
 
 ---
 
 ## Placements
 
-> Add screenshot
-
-```
-ss/placements.png
-```
+![Placements](ss/placements.png)
 
 ---
 
 ## Events
 
-> Add screenshot
-
-```
-ss/events.png
-```
+![Events](ss/events.png)
 
 ---
 
 ## Communities
 
-> Add screenshot
-
-```
-ss/communities.png
-```
+![Communities](ss/communities.png)
 
 ---
 
 ## Profile
 
-> Add screenshot
-
-```
-ss/profile.png
-```
+![Profile](ss/profile.png)
 
 ---
 
