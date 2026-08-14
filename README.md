@@ -350,7 +350,7 @@ http://127.0.0.1:5000
 > Add screenshot
 
 ```
-/ss/banner.png
+![Student Dashboard](ss/dashboard.png)
 ```
 
 ---
