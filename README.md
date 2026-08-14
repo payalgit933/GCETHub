@@ -350,7 +350,7 @@ http://127.0.0.1:5000
 > Add screenshot
 
 ```
-app/static/images/banner.png
+ss/banner.png
 ```
 
 ---
@@ -360,7 +360,7 @@ app/static/images/banner.png
 > Add screenshot
 
 ```
-app/static/images/dashboard.png
+ss/dashboard.png
 ```
 
 ---
@@ -370,7 +370,7 @@ app/static/images/dashboard.png
 > Add screenshot
 
 ```
-app/static/images/admin_dashboard.png
+ss/admin_dashboard.png
 ```
 
 ---
@@ -380,7 +380,7 @@ app/static/images/admin_dashboard.png
 > Add screenshot
 
 ```
-app/static/images/notes.png
+ss/notes.png
 ```
 
 ---
@@ -390,7 +390,7 @@ app/static/images/notes.png
 > Add screenshot
 
 ```
-app/static/images/placements.png
+ss/placements.png
 ```
 
 ---
@@ -400,7 +400,7 @@ app/static/images/placements.png
 > Add screenshot
 
 ```
-app/static/images/events.png
+ss/events.png
 ```
 
 ---
@@ -410,7 +410,7 @@ app/static/images/events.png
 > Add screenshot
 
 ```
-app/static/images/communities.png
+ss/communities.png
 ```
 
 ---
@@ -420,7 +420,7 @@ app/static/images/communities.png
 > Add screenshot
 
 ```
-app/static/images/profile.png
+ss/profile.png
 ```
 
 ---
