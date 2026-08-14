@@ -332,7 +332,7 @@ flask db upgrade
 ## 6. Start Application
 
 ```bash
-python run.py
+python run.py runserver
 ```
 
 Open
@@ -350,7 +350,7 @@ http://127.0.0.1:5000
 > Add screenshot
 
 ```
-ss/banner.png
+/ss/banner.png
 ```
 
 ---
